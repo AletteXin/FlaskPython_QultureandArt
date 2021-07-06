@@ -6,11 +6,21 @@ from flask_wtf.csrf import CSRFProtect
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length 
+from flask_login import LoginManager, login_user
+from models.user import User
 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
 
 app = Flask('NEXTAGRAM', root_path=web_dir)
+csrf = CSRFProtect(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get_or_none(User.id == user_id)
+
 
 if os.getenv('FLASK_ENV') == 'production':
     app.config.from_object("config.ProductionConfig")
@@ -22,7 +32,10 @@ def create_app():
     app = Flask(__name__)
     csrf.init_app(app)
 
-csrf = CSRFProtect(app)
+    secret_key = b'_5#y2L"F4Q8zTYH##2Tum7/'
+
+    
+    login_manager.login_view = 'users.login'
 
 
 @app.before_request

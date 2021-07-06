@@ -3,15 +3,17 @@ import peewee as pw
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import re 
+from flask_login import UserMixin
 
 
-class User(BaseModel):
+class User(UserMixin, BaseModel):
     name = pw.CharField(unique=False, null=False)
     username = pw.CharField(unique=True, null=False)
     password = None
     password_hash = pw.CharField()
     email = pw.CharField(null=False)
     birth_date = pw.DateField(null=False)
+
 
     def validate(self):
         email_existing = User.get_or_none(User.email == self.email)

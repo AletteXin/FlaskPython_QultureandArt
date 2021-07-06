@@ -3,6 +3,7 @@ from models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User 
 import re
+from flask_login import login_user
 
 users_blueprint = Blueprint('users',
                             __name__,
@@ -31,15 +32,15 @@ def create():
     if new_user.save():
         user = User.get_or_none(User.username == username)
         session['user_id'] = user.id
-        flash("You have signed up successfully! Here is your profile page. Explore around!")
+        login_user(user)
         return redirect(url_for('users.show', username = username))
     
     else:
         return redirect('/users/new')
     
 
-@users_blueprint.route('/<username>', methods=["GET"])
-def show(username):
+@users_blueprint.route('/profile', methods=["GET"])
+def show():
     
     if session.get('user_id'):
         user = User.get_or_none(User.id == session['user_id'])

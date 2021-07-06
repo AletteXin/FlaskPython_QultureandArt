@@ -67,7 +67,7 @@ h7{
   background-color: white;
   border: none;
   color: rgb(66, 109, 91);
-  font-size: 20px;
+  font-size: 17px;
   font-family: 'Open Sans Condensed', sans-serif;
   font-style: italic;
   padding-right: 20px;
@@ -75,12 +75,12 @@ h7{
 }
 
 .homepagelink:hover{
-  background-color: white;
+  background-color: rgb(241, 241, 241);
   border: none;
   color: rgb(61, 61, 61);
-  font-size: 20px;
+  font-size: 17px;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-style: italic;
+  text-decoration: underline;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -89,7 +89,7 @@ h7{
   background-color: white;
   border: none;
   color: rgb(0, 0, 0);
-  font-size: 20px;
+  font-size: 17px;
   font-family: 'Open Sans Condensed', sans-serif;
   font-style: italic;
   padding-right: 20px;

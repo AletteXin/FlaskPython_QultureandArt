@@ -3,6 +3,8 @@ from models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User 
 import re
+from app import *
+from flask_login import login_user, LoginManager, logout_user, login_required
 
 login_blueprint = Blueprint('login',
                             __name__,
@@ -22,7 +24,7 @@ def create():
     user = User.get_or_none(User.username == username)
     if user and check_password_hash(user.password_hash, password):
         session['user_id'] = user.id
-        flash("You have signed in successfully! Welcome back.")
+        login_user(user)
         return redirect(url_for('users.show', username = username))
 
     else: 
@@ -35,6 +37,5 @@ def destroy(username):
     
     user = User.get_or_none(User.username == username)
     session['user_id'] = None
-    total_users = print(session)
-    flash("You have signed out successfully! See you again soon.")
+    logout_user()
     return redirect (url_for('home'))
