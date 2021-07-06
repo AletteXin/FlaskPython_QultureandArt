@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  text-align: center;
+}
+
+main {
+  padding-bottom: 15px;
+
+}
+
+
+.flash-words{
+  color: rgb(128, 38, 38);
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+
+}
+
+
+/* NAVBAR */
+
+header{
+  height: 60px;
+  background-color: white;
+  width: 100vw;
+  position: sticky;
+  top: 0px;
+  padding-top: 10px;
+  z-index: 1;
+}
+
+h7{
+  font-family: 'Spectral', serif;
+  color: rgb(0, 0, 0);
+  font-size: 40px;
+
+}
+
+.navbar{
+  width: 100vw;
+  background-color:white;
+  position:sticky;
+  top: 60px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  z-index: 1;
+
+}
+
+.navbar-username{
+  background-color: white;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 22px;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  padding-right: 20px;
+  padding-left: 20px;
+  align-items: left;
+
+}
+
+.homepagelink{
+  background-color: white;
+  border: none;
+  color: rgb(66, 109, 91);
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.homepagelink:hover{
+  background-color: white;
+  border: none;
+  color: rgb(61, 61, 61);
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.homepagelink:active{
+  background-color: white;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+footer {
+  font-size: 11px;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  text-align: center;
+  color: #ffffff;
+  background-color: rgb(66, 109, 91);
+  height: 30px;
+  padding-top: 4px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+h9{
+  font-size: 15px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/* ERROR PAGE FONT  */
+h10{
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+
+h8{
+  font-family: 'EB Garamond', serif;
+  font-size: 30px;
+  font-weight: 100;
+  color:rgb(66, 109, 91);
+  text-align: right;
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* FORM CSS */
+
+.input-text{
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: left;
+  width: 300px;
+
+}
+
+
+.submit-button{
+  background-color: rgb(66, 109, 91);
+  color: white;
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.form-label{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  text-align: left;
+}
+
+.padding-left-align{
+  padding-top: 15px;
+  align-items: left;
+  
+}

@@ -1,0 +1,85 @@
+{% extends "_layout.html" %}
+
+
+
+{% block content %}
+
+<div class="navbar">
+
+    <form action="{{url_for('home')}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+            <input class="homepagelink" type="submit" value="Home">
+        </div>
+    </form>
+    
+    <form action="{{url_for('login.new')}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+            <input class="homepagelink" type="submit" value="Login">
+        </div>
+    </form>
+    
+    <form action="{{url_for('users.new')}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+            <input class="homepagelink" type="submit" value="Sign-up">
+        </div>
+    </form>
+
+</div>
+
+
+
+<main>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <img class="img-fluid" src="/static/images/login-img.jpg" />
+            </div>
+
+            <div class="col" class="center">
+
+
+                <h8 class="padding-left-align"> Welcome back! Enter your details. </h8>
+
+                <form action="{{url_for('login.create')}}" method="POST" id="create_new_account">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                    <div class="padding-left-align">
+                        <label class="form-label" for="username">Username: </label>
+                        <input class="input-text" type="text" name="username">
+                    </div>
+                    <div class="padding-left-align">
+                        <label class="form-label" for="password">Password: </label>
+                        <input class="input-text" type="password" name="password">
+                    </div>
+                    
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class=flashes>
+                        {% for message in messages %}
+                        <p class="flash-words">{{ message }} </p>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+
+                    
+                    <div class="padding-left-align">
+                        <input type="submit" value="Enter into my portal" class="submit-button">
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+
+
+{% endblock %}

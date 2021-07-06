@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+
+
+
+  {% assets "home_css" %}
+  <link rel="stylesheet" href="{{ ASSET_URL }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,200&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  {% endassets %}
+
+  {% assets "home_js" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+  <title>
+    {% block title %}
+    QULTURE & ART
+    {% endblock %}
+  </title>
+
+  {% block header %}
+  {% endblock %}
+
+</head>
+
+
+
+<body>
+
+  <header>
+    <h7>QULTURE & ART</h7>
+  </header>
+
+
+
+  
+  <main>
+    
+    <!-- {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %} -->
+    
+    {% block content %}
+
+    {% endblock %}
+
+  </main>
+
+  <footer>
+    <h9> Designed by AletteXin </h9> </a>
+  </footer>
+
+</body>
+
+
+
+
+</html>
