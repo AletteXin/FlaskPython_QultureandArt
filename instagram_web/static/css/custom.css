@@ -9,6 +9,16 @@ main {
 
 }
 
+a {
+  color:rgb(87, 141, 119);
+}
+
+
+a:hover {
+  text-decoration: underline;
+  color:rgb(87, 141, 119);
+}
+
 
 .flash-words{
   color: rgb(128, 38, 38);
@@ -26,6 +36,57 @@ main {
 
 .margin-top{
   margin-top: 20px;
+}
+
+
+/* FORMS */
+
+.input-text{
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: left;
+  width: 300px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 19px;
+
+}
+
+.input-text:focus{
+  border: solid;
+  border-width: 1px;
+  border-color:rgb(199, 199, 199);
+  border-bottom: 1px solid black;
+  text-align: left;
+  width: 300px;
+  background-color: rgb(241, 241, 241);
+  outline: none;
+
+
+}
+
+
+.submit-button{
+  background-color: rgb(66, 109, 91);
+  color: white;
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.form-label{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 19px;
+  text-align: left;
+}
+
+.padding-left-align{
+  padding-top: 15px;
+  align-items: left;
+  
 }
 
 /* NAVBAR */
@@ -198,41 +259,6 @@ h8{
 
 
 
-/* FORM CSS */
-
-.input-text{
-  border: none;
-  border-bottom: 1px solid black;
-  text-align: left;
-  width: 300px;
-
-}
-
-
-.submit-button{
-  background-color: rgb(66, 109, 91);
-  color: white;
-  border: none;
-  font-family: 'Spectral', serif;
-  font-size: 18px;
-  border-radius: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-}
-
-.form-label{
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 19px;
-  text-align: left;
-}
-
-.padding-left-align{
-  padding-top: 15px;
-  align-items: left;
-  
-}
-
 /* EDIT PAGE */
 .edit-fields{
   margin-top: 20px;
@@ -240,11 +266,12 @@ h8{
   text-align: left;
   justify-content: space-between;
   display:flex;
-  border: solid;
-  border-color: rgb(199, 199, 199);
-  border-radius: 20px;
-  border-width: 1px;
   padding: 25px;
+  border: solid;
+  border-radius:20px;
+  border-color: rgb(199, 199, 199);
+  border-width: 1px;
+
 
 }
 

@@ -36,14 +36,18 @@ def create():
     if new_user.save():
         user = User.get_or_none(User.username == username)
         session['user_id'] = user.id
+        show_profilepic = user.image_path
+        show_description = user.description
         login_user(user)
-        return redirect(url_for('users.show', username = username))
+        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, 
+        show_username = username, show_description = show_description))
     
     else:
         return redirect('/users/new')
     
 
 @users_blueprint.route('/profile/<show_username>', methods=["GET"])
+@login_required
 def show(show_username):
     
     if session.get('user_id'):
@@ -59,7 +63,7 @@ def show(show_username):
             show_profilepic = current_user.image_path
             show_description = current_user.description
         else:
-            show_username = None 
+            return redirect('/404.html')
         return render_template("/users/profile.html", username = username, show_profilepic = show_profilepic, 
         show_username = show_username, show_description = show_description)
 

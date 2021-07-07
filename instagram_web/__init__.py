@@ -16,26 +16,45 @@ app.register_blueprint(login_blueprint, url_prefix="/login")
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template('500.html'), 500
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            username = user.username
+        else:
+            username = None
+    return render_template('500.html', username = username), 500
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            username = user.username
+    else:
+        username = None
+    return render_template('404.html', username = username), 404
 
 @app.errorhandler(401)
 def unauthorized_entry(e):
-    return render_template('401.html'), 401
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            username = user.username
+    else:
+        username = None
+    return render_template('401.html', username = username), 401
 
 
 
 @app.route("/")
 def home():
-    user = User.get_or_none(User.id == session['user_id'])
-    if user:
-        username = user.username
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            username = user.username
     else:
-        username = None 
+        username = None
     return render_template('home.html', username=username)
 
 
