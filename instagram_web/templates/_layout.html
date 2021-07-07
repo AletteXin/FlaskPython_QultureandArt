@@ -20,6 +20,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
   {% endassets %}
 
   {% assets "home_js" %}
@@ -42,35 +45,52 @@
 <body>
 
   <header>
+
+
     <h7>QULTURE & ART</h7>
   </header>
 
 
   {% if current_user.is_authenticated %}
 
-  <div class="navbar">
+  <div class="navbar-user">
 
-    <form action="{{url_for('users.show', username=username)}}">
-  
-    <div>
-      <input class="navbar-username" type="submit" value="{{username}}'s gallery" >
+    <div class="navbar-user-cont">
+      
+
+      <form action="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = username, 
+      show_description = show_description)}}">
+
+        <div>
+          <input class="navbar-username" type="submit" value="{{username}}'s gallery">
+        </div>
+      </form>
+
+      <form action="{{url_for('users.upload')}}">
+        <div>
+          <input class="nav-button" type="submit" value="Share a new story">
+        </div>
+      </form>
+
+      </div>
+
+      <div class="navbar-user-cont">
+
+      <form action="{{url_for('home', username=username)}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+          <input class="homepagelink" type="submit" value="Home">
+        </div>
+      </form>
+
+      <form action="{{url_for('login.destroy', username = username)}}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+          <input class="homepagelink" type="submit" value="Logout">
+        </div>
+      </form>
     </div>
-    </form>
-
-    <form action="{{url_for('home', username=username)}}">
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-      <div>
-        <input class="homepagelink" type="submit" value="Home">
-      </div>
-    </form>
-
-    <form action="{{url_for('login.destroy', username = username)}}" method="POST">
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-      <div>
-        <input class="homepagelink" type="submit" value="Logout">
-      </div>
-    </form>
-
+    </div>
 
   </div>
 

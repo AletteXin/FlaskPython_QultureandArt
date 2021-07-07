@@ -24,8 +24,9 @@ def create():
     user = User.get_or_none(User.username == username)
     if user and check_password_hash(user.password_hash, password):
         session['user_id'] = user.id
+        show_profilepic = user.image_path
         login_user(user)
-        return redirect(url_for('users.show', username = username))
+        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username))
 
     else: 
         flash("Invalid username and/or password. Please enter your details again.")

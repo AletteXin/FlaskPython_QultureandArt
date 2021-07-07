@@ -4,6 +4,95 @@
 
 {% block content %}
 
+<main>
+
+
+
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+            <div class="col">
+                <div class="margin-top">
+                    <h11>{{show_username}}</h11>
+                </div>
+                <img class="user-profilepic" src="{{user_profilepic}}" />
+                <div class="profile-description">
+                    <h9>"{{show_description}}"</h9>
+                </div>
+                {% if current_user.username == show_username %}
+
+
+                <form action="{{url_for('users.upload')}}">
+                    <div>
+                        <input class="profile-button" type="submit" value="Update profile picture">
+                    </div>
+
+                </form>
+
+                <form action="{{url_for('users.edit')}}">
+                    <div>
+                        <input class="profile-button" type="submit" value="Edit personal information">
+                    </div>
+                </form>
+
+
+                {% endif %}
+
+            </div>
+
+            <div class="col">
+
+                <h8>Upload </h8>
+
+                <form action="{{url_for('users.edit', id = id)}}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                    <div class="padding-left-align">
+                        <label class="form-label" for="title">Title: </label>
+                        <input class="input-text" type="text" name="title">
+                    </div>
+
+                    <div class="padding-left-align">
+                        <label class="form-label" for="category">Category: </label>
+                        <input class="input-text" type="text" name="category">
+                    </div>
+
+                    <div class="padding-left-align">
+                        <label class="form-label" for="description">Description: </label>
+                        <input class="input-text" type="text" name="description">
+                    </div>
+
+                    <div class="padding-left-align">
+                        <label class="form-label" for="upload-img">Upload an image: </label>
+                        <input class="input-text" type="password" name="upload-img">
+                    </div>
+
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class=flashes>
+                        {% for message in messages %}
+                        <p class="flash-words">{{ message }} </p>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+
+                    <div class="padding-left-align">
+                        <input class="submit-button" type="submit" value="Share my Qulture & Art journey">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
 
 
 

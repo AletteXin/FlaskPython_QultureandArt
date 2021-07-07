@@ -1,0 +1,53 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+
+
+<main>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <img class="img-fluid" src="/static/images/upload-profilepic.jpg" />
+            </div>
+
+            <div class="col" class="center">
+
+                <h8>Upload A New Profile Picture</h8>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <p class="flash-words">{{ message }} </p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+                <form action="{{url_for('users.newpic')}}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <div class="padding-left-align">
+                        <label class="form-label" for="profilepic"></label>
+                        <input type="file" name="profilepic">
+                    </div>
+
+                    <div class="padding-left-align">
+                        <input class="submit-button" type="submit" value="Upload">
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}
+
+<!-- put a form here  -->
+
+<!-- 
+and then in views.py need to put in the function  -->

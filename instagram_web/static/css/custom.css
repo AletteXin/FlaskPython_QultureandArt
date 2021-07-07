@@ -16,7 +16,17 @@ main {
   font-size: 20px;
 
 }
+/* GENERAL  */
 
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-top{
+  margin-top: 20px;
+}
 
 /* NAVBAR */
 
@@ -48,20 +58,70 @@ h7{
   border-bottom: 1px solid black;
   z-index: 1;
 
+
+}
+
+.navbar-user{
+  width: 100vw;
+  background-color:white;
+  position:sticky;
+  top: 60px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  z-index: 1;
+  vertical-align: middle;
+  padding-top:7px;
+
+}
+
+
+.navbar-user-cont{
+  display: flex;
 }
 
 .navbar-username{
   background-color: white;
   border: none;
   color: rgb(0, 0, 0);
-  font-size: 22px;
+  font-size: 17px;
   font-family: 'Spectral', serif;
   font-style: italic;
   padding-right: 20px;
   padding-left: 20px;
   align-items: left;
+  margin-bottom: 3px;
+  margin-top: 0px;
+
 
 }
+
+.navbar-username:hover{
+  background-color: rgb(235, 235, 235);
+   color: rgb(66, 109, 91);
+}
+
+
+.nav-button{
+  background-color: rgb(66, 109, 91);
+  color: white;
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  margin-left: 3px;
+
+}
+
+
+.nav-button:hover{
+  background-color: rgb(116, 190, 159);
+  color: rgb(0, 0, 0);
+}
+
 
 .homepagelink{
   background-color: white;
@@ -116,7 +176,7 @@ footer a {
 }
 
 h9{
-  font-size: 15px;
+  font-size: 17px;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -135,11 +195,8 @@ h8{
   text-align: right;
 }
 
-.center{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+
+
 
 /* FORM CSS */
 
@@ -157,13 +214,16 @@ h8{
   color: white;
   border: none;
   font-family: 'Spectral', serif;
-  font-size: 20px;
-  margin-top: 30px;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 
 .form-label{
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 19px;
   text-align: left;
 }
 
@@ -171,4 +231,64 @@ h8{
   padding-top: 15px;
   align-items: left;
   
+}
+
+/* EDIT PAGE */
+.edit-fields{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  justify-content: space-between;
+  display:flex;
+  border: solid;
+  border-color: rgb(199, 199, 199);
+  border-radius: 20px;
+  border-width: 1px;
+  padding: 25px;
+
+}
+
+
+/* USER PROFILE  */
+
+.user-profilepic{
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  margin: 30px;
+}
+
+.profile-button{
+  background-color: rgb(228, 228, 228);
+  color: rgb(68, 68, 68);
+  border: none;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  width: 220px;
+
+}
+
+.profile-description{
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+/* INDIVIDUAL USERNAME PROFILE PAGE FONT  */
+
+h11{
+font-family: 'PT Serif', serif;
+  font-size: 27px;
+  color:rgb(0, 0, 0);
+
+}
+
+/* INDIVIDUAL DESCRIPTION PROFILE PAGE FONT  */
+
+h12{
+
 }

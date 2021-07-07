@@ -1,0 +1,115 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+
+
+<main>
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col">
+
+
+                    <h8>Make changes to your details</h8>
+
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <p class="flash-words">{{ message }} </p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+                <div class="edit-fields">
+                
+                    <form action="{{url_for('users.update', field = 'description')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <label class="form-label" for="description">Description: </label>
+                        <input class="input-text" type="text" name="description">
+                        <div>
+                            <input class="submit-button" type="submit" value="Update Description">
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="edit-fields">
+
+                    <form action="{{url_for('users.update', field = 'name')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <label class="form-label" for="name">Name: </label>
+                        <input class="input-text" type="text" name="name">
+                        <div>
+                            <input class="submit-button" type="submit" value="Update Name">
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="edit-fields">
+                    <form action="{{url_for('users.update', field = 'username')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                        <label class="form-label" for="username">Username: </label>
+                        <input class="input-text" type="text" name="username">
+                        <div>
+                            <input class="submit-button" type="submit" value="Update Username">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="edit-fields">
+                    <form action="{{url_for('users.update', field = 'password')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <div>
+                            <label class="form-label" for="password">Password: </label>
+                            <input class="input-text" type="password" name="password"
+                                placeholder="1 lowercase, 1 uppercase and 1 of ?#$@!.">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for='reenter_password'>Reenter password: </label>
+                            <input class="input-text" type="password" name="reenter_password">
+                            <div>
+                            <input class="submit-button" type="submit" value="Update Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="edit-fields">
+                    <form action="{{url_for('users.update', field = 'email')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <label class="form-label" for="enail">Email: </label>
+                        <input class="input-text" type="text" name="email">
+                        <div>
+                        <input class="submit-button" type="submit" value="Update Email">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col">
+                <img class="img-fluid" src="/static/images/edit-details.jpg" />
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</main>
+
+{% endblock %}
+
+<!-- put a form here  -->
+
+<!-- 
+and then in views.py need to put in the function  -->

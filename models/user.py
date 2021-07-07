@@ -4,6 +4,7 @@ import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import re 
 from flask_login import UserMixin
+from playhouse.hybrid import hybrid_property 
 
 
 class User(UserMixin, BaseModel):
@@ -13,24 +14,39 @@ class User(UserMixin, BaseModel):
     password_hash = pw.CharField()
     email = pw.CharField(null=False)
     birth_date = pw.DateField(null=False)
+    image_path = pw.TextField(null=True, default="https://images.unsplash.com/photo-1604095288333-55f9bf7f8031?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80")
+    description = pw.TextField(null=True, default="Tell your story.")
 
+
+    @hybrid_property
+    def full_image_path(self):
+        return AWS_S3_DOMAIN + self.image_path 
 
     def validate(self):
-        email_existing = User.get_or_none(User.email == self.email)
-        if email_existing:
-            self.errors.append("There is an existing account associated with this email.")
-        
-        existing_username = User.get_or_none(User.username == self.username)
-        if existing_username:
-            self.errors.append("Sadly, this username has been taken. Please choose another.")
-        
-        has_lowercase = re.search("[a-z]", self.password)
-        has_uppercase = re.search("[A-Z]", self.password)
-        has_special_char = re.search("[ \[ \] \# \$ \% \@ \* \< \&]", self.password)
 
-        if has_lowercase and has_uppercase and has_special_char:
-            self.password_hash = generate_password_hash(self.password)
+        if not self.id:
+            existing_username = User.get_or_none(User.username == self.username)
+            if existing_username:
+                    self.errors.append("Sadly, this username has been taken. Please choose another.")
+            
 
+            email_existing = User.get_or_none(User.email == self.email)
+            if email_existing:
+                    self.errors.append("There is an existing account associated with this email.")
+            
+
+        if not (self.id and (self.password == None)):
+        
+            has_lowercase = re.search("[a-z]", self.password)
+            has_uppercase = re.search("[A-Z]", self.password)
+            has_special_char = re.search("[ \[ \] \# \$ \% \@ \* \< \&]", self.password)
+
+            if has_lowercase and has_uppercase and has_special_char:
+                self.password_hash = generate_password_hash(self.password)
+
+            else:
+                self.errors.append("Password either has fewer than 6 characters or does not have a lowercase, uppercase, or a special character.")
+        
         else:
-            self.errors.append("Password either does not have a lowercase, uppercase, or a special character.")
+            pass
 
