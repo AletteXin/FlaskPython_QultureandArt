@@ -1,0 +1,62 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+
+
+<main>
+
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+
+            <div class="col" class="center">
+
+
+
+                <form action="{{url_for('users.newpic')}}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <h8>Upload a photo for your new story</h8>
+                    <div class="padding-left-align">
+                        <label class="form-label" for="profilepic"></label>
+                        <input type="file" name="profilepic">
+                    </div>
+
+                    <h8>Describe your experience/views</h8>
+                    <div class="padding-left-align">
+                        <label class="form-label" for="story_description"></label>
+                        <input type="text" name="profilepic">
+                    </div>
+                    <div class="padding-left-align">
+                        <input class="submit-button" type="submit" value="Share my experience">
+                    </div>
+                </form>
+            </div>
+
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <p class="flash-words">{{ message }} </p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <div class="col">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}
+
+<!-- put a form here  -->
+
+<!-- 
+and then in views.py need to put in the function  -->

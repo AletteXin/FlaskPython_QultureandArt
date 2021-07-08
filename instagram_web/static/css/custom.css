@@ -35,7 +35,7 @@ a:hover {
 }
 
 .margin-top{
-  margin-top: 20px;
+  padding-top: 50px;
 }
 
 
@@ -45,9 +45,9 @@ a:hover {
   border: none;
   border-bottom: 1px solid black;
   text-align: left;
-  width: 300px;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 19px;
+  width: 350px;
 
 }
 
@@ -57,10 +57,8 @@ a:hover {
   border-color:rgb(199, 199, 199);
   border-bottom: 1px solid black;
   text-align: left;
-  width: 300px;
   background-color: rgb(241, 241, 241);
   outline: none;
-
 
 }
 
@@ -74,13 +72,15 @@ a:hover {
   border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
-
+  width: 170px;
+  margin-top: 10px;
 }
 
 .form-label{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 19px;
   text-align: left;
+  width: 120px;
 }
 
 .padding-left-align{
@@ -92,14 +92,30 @@ a:hover {
 /* NAVBAR */
 
 header{
-  height: 60px;
-  background-color: white;
+  height: 70px;
+	background: linear-gradient(-20deg, rgb(66, 109, 91), #a8b9b1, #ffffff);
+  background-size: 400% 400%; 
+	animation: gradient 20s ease infinite;
   width: 100vw;
   position: sticky;
   top: 0px;
   padding-top: 10px;
+  padding-bottom: 30px;
   z-index: 1;
 }
+
+/* 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */
 
 h7{
   font-family: 'Spectral', serif;
@@ -112,7 +128,7 @@ h7{
   width: 100vw;
   background-color:white;
   position:sticky;
-  top: 60px;
+  top: 70px;
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -126,7 +142,7 @@ h7{
   width: 100vw;
   background-color:white;
   position:sticky;
-  top: 60px;
+  top: 70px;
   display:flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -145,7 +161,7 @@ h7{
 .navbar-username{
   background-color: white;
   border: none;
-  color: rgb(0, 0, 0);
+  color: rgb(66, 109, 91);
   font-size: 17px;
   font-family: 'Spectral', serif;
   font-style: italic;
@@ -160,7 +176,8 @@ h7{
 
 .navbar-username:hover{
   background-color: rgb(235, 235, 235);
-   color: rgb(66, 109, 91);
+   color: black;
+   text-decoration: underline;
 }
 
 
@@ -197,24 +214,17 @@ h7{
 
 .homepagelink:hover{
   background-color: rgb(241, 241, 241);
-  border: none;
   color: rgb(61, 61, 61);
   font-size: 17px;
-  font-family: 'Open Sans Condensed', sans-serif;
   text-decoration: underline;
-  padding-right: 20px;
-  padding-left: 20px;
 }
 
 .homepagelink:active{
   background-color: white;
-  border: none;
   color: rgb(0, 0, 0);
   font-size: 17px;
-  font-family: 'Open Sans Condensed', sans-serif;
   font-style: italic;
-  padding-right: 20px;
-  padding-left: 20px;
+
 }
 
 footer {
@@ -261,8 +271,8 @@ h8{
 
 /* EDIT PAGE */
 .edit-fields{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: left;
   justify-content: space-between;
   display:flex;
@@ -305,6 +315,8 @@ h8{
   padding-right: 100px;
 }
 
+
+
 /* INDIVIDUAL USERNAME PROFILE PAGE FONT  */
 
 h11{
@@ -314,8 +326,4 @@ font-family: 'PT Serif', serif;
 
 }
 
-/* INDIVIDUAL DESCRIPTION PROFILE PAGE FONT  */
 
-h12{
-
-}

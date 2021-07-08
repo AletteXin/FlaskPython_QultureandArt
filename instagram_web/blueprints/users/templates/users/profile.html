@@ -12,32 +12,34 @@
         <div class="row align-items-center">
 
             <div class="col">
-                <div class="margin-top">
-                    <h11>{{show_username}}</h11>
-                </div>
-                <img class="user-profilepic" src="{{user_profilepic}}" />
-                <div class="profile-description">
-                    <h9>"{{show_description}}"</h9>
-                </div>
-                {% if current_user.username == show_username %}
-
-
-                <form action="{{url_for('users.upload')}}">
-                    <div>
-                        <input class="profile-button" type="submit" value="Update profile picture">
+                <div class="profile-background">
+                    <div class="margin-top">
+                        <h11>{{show_username}}</h11>
                     </div>
-
-                </form>
-
-                <form action="{{url_for('users.edit')}}">
-                    <div>
-                        <input class="profile-button" type="submit" value="Edit personal information">
+                    <img class="user-profilepic" src="{{show_profilepic}}" />
+                    <div class="profile-description">
+                        <h9>"{{show_description}}"</h9>
                     </div>
-                </form>
+                    {% if current_user.username == show_username %}
 
 
-                {% endif %}
+                    <form action="{{url_for('users.upload')}}">
+                        <div>
+                            <input class="profile-button" type="submit" value="Update profile picture">
+                        </div>
 
+                    </form>
+
+                    <form action="{{url_for('users.edit')}}">
+                        <div>
+                            <input class="profile-button" type="submit" value="Edit personal information">
+                        </div>
+                    </form>
+
+
+                    {% endif %}
+
+                </div>
             </div>
 
             <div class="col">

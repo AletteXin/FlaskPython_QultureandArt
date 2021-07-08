@@ -9,13 +9,17 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from flask_login import LoginManager, login_user
 from models.user import User
 
+
+#Tells Flask app where to go to display the web in the app function below 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
 
-app = Flask('NEXTAGRAM', root_path=web_dir)
+
+app = Flask('QULTURE & ART', root_path=web_dir)
 csrf = CSRFProtect(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -32,10 +36,8 @@ def create_app():
     app = Flask(__name__)
     csrf.init_app(app)
 
-    secret_key = b'_5#y2L"F4Q8zTYH##2Tum7/'
-
-    
-    login_manager.login_view = 'users.login'
+    # secret_key = b'_5#y2L"F4Q8zTYH##2Tum7/'
+    # login_manager.login_view = 'users.login'
 
 
 @app.before_request
