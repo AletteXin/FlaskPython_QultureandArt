@@ -13,19 +13,27 @@
             <div class="col" class="center">
 
 
-
-                <form action="{{url_for('users.newpic')}}" method="POST" enctype="multipart/form-data">
+                <h8>Post a new story </h8>
+                <form action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <h8>Upload a photo for your new story</h8>
+
+
+                    <h9>Title</h9>
                     <div class="padding-left-align">
-                        <label class="form-label" for="profilepic"></label>
-                        <input type="file" name="profilepic">
+                        <label class="form-label" for="story_title"></label>
+                        <input type="text" name="story_title">
                     </div>
 
-                    <h8>Describe your experience/views</h8>
+                    <h9>Attach a photo </h9>
+                    <div class="padding-left-align">
+                        <label class="form-label" for="story_image"></label>
+                        <input type="file" name="story_image">
+                    </div>
+
+                    <h9>Describe your experience/views</h9>
                     <div class="padding-left-align">
                         <label class="form-label" for="story_description"></label>
-                        <input type="text" name="profilepic">
+                        <input type="text" name="story_description">
                     </div>
                     <div class="padding-left-align">
                         <input class="submit-button" type="submit" value="Share my experience">

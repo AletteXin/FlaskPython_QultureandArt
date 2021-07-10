@@ -11,6 +11,7 @@
     <div class="container-fluid">
         <div class="row align-items-center">
 
+
             <div class="col">
                 <div class="profile-background">
                     <div class="margin-top">
@@ -44,48 +45,48 @@
 
             <div class="col">
 
-                <h8>Upload </h8>
+                <h8>Stories </h8>
 
-                <form action="{{url_for('users.edit', id = id)}}" method="POST">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <p class="flash-words">{{ message }} </p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
 
-                    <div class="padding-left-align">
-                        <label class="form-label" for="title">Title: </label>
-                        <input class="input-text" type="text" name="title">
-                    </div>
 
-                    <div class="padding-left-align">
-                        <label class="form-label" for="category">Category: </label>
-                        <input class="input-text" type="text" name="category">
-                    </div>
+                {% for value in images %}
 
-                    <div class="padding-left-align">
-                        <label class="form-label" for="description">Description: </label>
-                        <input class="input-text" type="text" name="description">
-                    </div>
+                {% print(value.title) %}
+                <img class="user-profilepic" src="{{value.image_url}}" />
+                {% print(value.description) %}
+                {% if username == show_username %}
 
-                    <div class="padding-left-align">
-                        <label class="form-label" for="upload-img">Upload an image: </label>
-                        <input class="input-text" type="password" name="upload-img">
-                    </div>
 
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    <ul class=flashes>
-                        {% for message in messages %}
-                        <p class="flash-words">{{ message }} </p>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    {% endwith %}
-
-                    <div class="padding-left-align">
-                        <input class="submit-button" type="submit" value="Share my Qulture & Art journey">
+                <form action="{{url_for('images.edit', id = value.id)}}">
+                    <div>
+                        <input class="profile-button" type="submit" value="Edit post">
                     </div>
                 </form>
+
+                <form action="{{url_for('images.destroy', id = value.id)}}">
+                    <div>
+                        <input class="profile-button" type="submit" value="Delete post">
+                    </div>
+                </form>
+
+
+                {% endif %}
+                {% endfor %}
+
+
             </div>
 
             <div class="col">
+
 
             </div>
 

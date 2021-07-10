@@ -1,0 +1,32 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+<main>
+    <div class=container-fluid>
+        <div id="payment"></div>
+        <button id="braintree-button">Send to braintree</button>
+        <form method="POST" action="{{url_for('payment.create')}}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="text" name="nonce" id="nonce-field">
+            <input type="submit" value="Send nonce to backend">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        const braintreeButton = document.getElementById("braintree-button")
+
+        braintree.dropin.create({
+            container: document.getElementById("payment"),
+            authorization: "{{token}}"
+        }, (error, paymentForm) => {
+            braintreeButton.onclick = () => {
+                paymentForm.requestPaymentMethod((error, payload) => { document.getElementById("nonce-field").value = payload.nonce })
+            }
+        })
+
+    </script>
+
+</main>
+
+{% endblock %}

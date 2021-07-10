@@ -5,6 +5,7 @@ from models.user import User
 import re
 from app import *
 from flask_login import login_user, LoginManager, logout_user, login_required
+from models.images import Image
 
 login_blueprint = Blueprint('login',
                             __name__,
@@ -25,8 +26,9 @@ def create():
     if user and check_password_hash(user.password_hash, password):
         session['user_id'] = user.id
         show_profilepic = user.image_path
+        images = Image.select().where(Image.user_id == user.id)
         login_user(user)
-        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username))
+        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username, images = images))
 
     else: 
         flash("Invalid username and/or password. Please enter your details again.")

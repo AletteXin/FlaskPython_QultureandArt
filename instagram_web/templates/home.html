@@ -12,6 +12,50 @@ QULTURE & ART
 
 {% block content %}
 
+
+
+{% for value in users_with_images %}
+{% for image in value.users %}
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class=home-user-box>
+        <div>
+          <h12> {% print(value.username) %} </h12>
+        </div>
+        <a href="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = value.username, 
+      show_description = show_description)}}">
+          <img class="home-profilepic" src="{{value.image_path}}">
+        </a>
+      </div>
+    </div>
+    <div class="col-4">
+
+      <div class="home-post-box">
+        <div>
+          <h13 class="home-word-box">{{image.title}}</h13>
+          <h14 class="home-word-box">{{image.date_posted}}</h14>
+          <h15 class="home-word-box">{{image.description}}</h15>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-4">
+      <a href="{{url_for('payment.new')}}"><img class="home-postpic" src="{{image.image_url}}" /></a>
+    </div>
+    <div class="home-line">
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+</div>
+{% endfor %}
+
+{% endfor %}
+
 <!-- <div class="navbar">
 
 <form action="{{url_for('home')}}">

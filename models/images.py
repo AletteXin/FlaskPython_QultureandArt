@@ -9,9 +9,12 @@ from models.user import User
 
 
 class Image(UserMixin, BaseModel):
-    image_path = pw.TextField(null=False)
-    description = pw.CharField()
+    title = pw.CharField(null=False)
+    image_url = pw.TextField(null=False)
+    description = pw.CharField(null=False, max_length = 500)
     user = pw.ForeignKeyField(User, backref = "users")
+    date_posted = pw.DateTimeField(default = datetime.datetime.now)
+
 
     @hybrid_property
     def full_image_path(self):

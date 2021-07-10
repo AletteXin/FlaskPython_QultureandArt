@@ -10,6 +10,7 @@ from flask_login import LoginManager, login_user
 from models.user import User
 
 
+
 #Tells Flask app where to go to display the web in the app function below 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')

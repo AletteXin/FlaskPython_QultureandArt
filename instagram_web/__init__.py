@@ -6,6 +6,11 @@ from flask_login import LoginManager, login_user
 from instagram_web.blueprints.users.views import users_blueprint
 from instagram_web.blueprints.login.views import login_blueprint
 from instagram_web.blueprints.images.views import images_blueprint
+from instagram_web.blueprints.payment.views import payment_blueprint 
+from models.images import Image
+from models.user import User
+from peewee import prefetch 
+from .util.payment import *
 
 
 assets = Environment(app)
@@ -14,6 +19,8 @@ assets.register(bundles)
 app.register_blueprint(users_blueprint, url_prefix="/users")
 app.register_blueprint(login_blueprint, url_prefix="/login")
 app.register_blueprint(images_blueprint, url_prefix="/images")
+app.register_blueprint(payment_blueprint, url_prefix = "/payment")
+
 
 
 @app.errorhandler(500)
@@ -57,7 +64,13 @@ def home():
             username = user.username
     else:
         username = None
-    return render_template('home.html', username=username)
+
+    users = User.select()
+    images = Image.select()
+    users_with_images = prefetch(users, images)
+    return render_template('home.html', username=username, users_with_images=users_with_images)
+
+
 
 
 

@@ -7,6 +7,8 @@ import re
 from flask_login import login_user, login_required
 from instagram_web.util.helpers import upload_file_to_s3
 from app import *
+from models.images import Image
+from peewee import prefetch 
 
 
 users_blueprint = Blueprint('users',
@@ -57,16 +59,18 @@ def show(show_username):
         else:
             username = None
         
-        current_user = User.get_or_none(User.username == show_username)
-        if current_user:
-            show_username = current_user.username
-            show_profilepic = current_user.image_path
-            show_description = current_user.description
+        show_user = User.get_or_none(User.username == show_username)
+        if show_user:
+            show_username = show_user.username
+            show_profilepic = show_user.image_path
+            show_description = show_user.description
+            images = Image.select().where(Image.user_id == show_user.id)
+            return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, show_username = show_username, show_description = show_description, images = images)
+
         else:
             return redirect('/404.html')
-        return render_template("/users/profile.html", username = username, show_profilepic = show_profilepic, 
-        show_username = show_username, show_description = show_description)
-
+        
+        
     else:
         return redirect (url_for('login.new'))
 

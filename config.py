@@ -14,6 +14,10 @@ class Config(object):
     S3_LOCATION = "http://{}.s3.amazonaws.com/".format(S3_BUCKET)
 
 
+
+
+
+
 class ProductionConfig(Config):
     DEBUG = False
     ASSETS_DEBUG = False

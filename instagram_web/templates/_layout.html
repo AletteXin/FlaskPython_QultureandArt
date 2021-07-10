@@ -7,22 +7,37 @@
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
 
-
+  <script src="https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js"></script>
 
   {% assets "home_css" %}
   <link rel="stylesheet" href="{{ ASSET_URL }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,200&display=swap" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
   {% endassets %}
 
   {% assets "home_js" %}
@@ -56,7 +71,7 @@
   <div class="navbar-user">
 
     <div class="navbar-user-cont">
-      
+
 
       <form action="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = username, 
       show_description = show_description)}}">
@@ -72,9 +87,9 @@
         </div>
       </form>
 
-      </div>
+    </div>
 
-      <div class="navbar-user-cont">
+    <div class="navbar-user-cont">
 
       <form action="{{url_for('home', username=username)}}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -90,7 +105,7 @@
         </div>
       </form>
     </div>
-    </div>
+  </div>
 
   </div>
 
