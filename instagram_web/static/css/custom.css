@@ -76,6 +76,48 @@ a:hover {
   margin-top: 10px;
 }
 
+.submit-button:hover{
+  background-color: rgb(116, 190, 159);
+  color: rgb(0, 0, 0);
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 170px;
+  margin-top: 10px;
+}
+
+
+.submit-button-google{
+  background-color:  rgb(6, 4, 138);
+  color: white;
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 170px;
+  margin-top: 10px;
+}
+
+
+
+.submit-button-google:hover{
+  background-color:  rgb(128, 38, 38);
+  color: white;
+  border: none;
+  font-family: 'Spectral', serif;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 170px;
+  margin-top: 10px;
+}
+
 .form-label{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 19px;
@@ -272,10 +314,10 @@ h12{
   display: block;
   background-color: rgba(231, 241, 237, 0.726);
 }
-
+/* 
 .home-post-box:hover{
   box-shadow: 10px 5px 10px rgb(172, 172, 172);
-}
+} */
 
 .home-word-box{
   display: block;
@@ -284,9 +326,36 @@ h12{
 
 
 .home-postpic{
-  height: 170px;
-  width: 170px;
+  height: 220px;
+  width: 220px;
   margin: 10px;
+}
+
+.like-donate-box{
+  text-align: right;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.like-donate-button{
+  width: 50px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+
+.like-donate-button:hover{
+
+  border-radius: 50px;
+  box-shadow:3px 3px 3px rgb(148, 182, 161);
+  border: solid;
+  border-color:rgb(148, 182, 161);
+  border-width: 1px;
+  outline: none;
 }
 
 .home-line{

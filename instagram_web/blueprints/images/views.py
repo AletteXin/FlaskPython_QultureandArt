@@ -149,7 +149,8 @@ def destroy(id):
         show_description = user.description
         images = Image.select().where(Image.user_id == user.id)
 
-        image_to_delete.delete().execute()
+        query = image_to_delete.delete()
+        query.execute()
         flash ("Post deleted successfully!")
         return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username, images = images))
 

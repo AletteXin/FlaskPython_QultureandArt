@@ -41,4 +41,6 @@ def create():
             "submit_for_settlement": True
         }
     })
-    return "Transaction Started"
+
+    flash ("Thank you for your generous donation!")
+    return redirect(url_for('payment.new'))

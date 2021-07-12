@@ -12,7 +12,7 @@
         <div class="row align-items-center">
 
 
-            <div class="col">
+            <div class="col-4">
                 <div class="profile-background">
                     <div class="margin-top">
                         <h11>{{show_username}}</h11>
@@ -43,9 +43,8 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col-8">
 
-                <h8>Stories </h8>
 
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -60,37 +59,91 @@
 
                 {% for value in images %}
 
-                {% print(value.title) %}
-                <img class="user-profilepic" src="{{value.image_url}}" />
-                {% print(value.description) %}
-                {% if username == show_username %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="home-post-box">
+
+                                <div>
+                                    <h13>{% print(value.title) %}</h13>
+                                </div>
+                                <div>
+                                    <h14>{% print(value.date_posted) %}</h14>
+                                </div>
+                                <div>
+                                    <h15>{% print(value.description) %}</h15>
+                                </div>
 
 
-                <form action="{{url_for('images.edit', id = value.id)}}">
-                    <div>
-                        <input class="profile-button" type="submit" value="Edit post">
+                            </div>
+                            
+                            <div class="like-donate-box">
+
+                                {% if username == show_username %}
+
+                                <form action="{{url_for('images.edit', id = value.id)}}">
+                                    <button class="like-donate-button" type="submit"><i
+                                            class="fas fa-edit fa-lg"></i></button>
+                                </form>
+
+                                <form action="{{url_for('images.destroy', id = value.id)}}">
+                                    <button class="like-donate-button" type="submit"><i
+                                            class="far fa-trash-alt fa-lg"></i></button>
+                                </form>
+
+                                {% endif %}
+
+                                <button class="like-donate-button"><i class="fas fa-heart fa-lg"></i></button>
+
+                                <form action="{{url_for('payment.new')}}">
+                                <button class="like-donate-button" type=submit><i
+                                        class="fas fa-hand-holding-usd fa-lg"></i></button>
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <img class="home-postpic" src="{{value.image_url}}" />
+
+                        </div>
+
+                        <div>
+
+
+                        </div>
+                        <div class="home-line">
+
+                        </div>
+                        {% endfor %}
+
                     </div>
-                </form>
-
-                <form action="{{url_for('images.destroy', id = value.id)}}">
-                    <div>
-                        <input class="profile-button" type="submit" value="Delete post">
-                    </div>
-                </form>
-
-
-                {% endif %}
-                {% endfor %}
-
+                </div>
 
             </div>
 
-            <div class="col">
 
 
-            </div>
+
+
+
+
+
+
+
+
+
 
         </div>
+
+        <div class="col">
+
+
+
+        </div>
+
+    </div>
 
     </div>
 

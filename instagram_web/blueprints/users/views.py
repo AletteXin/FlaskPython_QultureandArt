@@ -64,7 +64,7 @@ def show(show_username):
             show_username = show_user.username
             show_profilepic = show_user.image_path
             show_description = show_user.description
-            images = Image.select().where(Image.user_id == show_user.id)
+            images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
             return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, show_username = show_username, show_description = show_description, images = images)
 
         else:

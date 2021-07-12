@@ -6,6 +6,9 @@ import re
 from app import *
 from flask_login import login_user, LoginManager, logout_user, login_required
 from models.images import Image
+from instagram_web.util.google_oauth import oauth
+
+
 
 login_blueprint = Blueprint('login',
                             __name__,
@@ -42,3 +45,37 @@ def destroy(username):
     session['user_id'] = None
     logout_user()
     return redirect (url_for('home'))
+
+
+
+@login_blueprint.route("/google_login")
+def google_login():
+    redirect_uri = url_for('login.authorize', _external = True)
+    return oauth.google.authorize_redirect(redirect_uri)
+
+@login_blueprint.route("/authorize/google")
+def authorize():
+    oauth.google.authorize_access_token()
+    email = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()['email']
+    # name = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()['given_name']
+
+    user = User.get_or_none(User.email == email)
+    if user: 
+        login_user(user)
+        username = user.username 
+        return redirect(url_for('home', username = username, show_username = username))
+    else:
+        
+        new_user = User(name = email, username=email, password = "Qultureandart$$$", email = email, birth_date = "1990-01-01")
+
+        if new_user.save():
+            user = User.get_or_none(User.username == email)
+            session['user_id'] = user.id
+            show_profilepic = user.image_path
+            show_description = user.description
+            login_user(user)
+            flash("Please update your password now.")
+            return redirect(url_for('users.edit', username = username, show_username = username, show_profilepic = show_profilepic, show_description = show_description))
+        
+        else:
+            return redirect('/users/new')

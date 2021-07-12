@@ -2,14 +2,24 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <p class="flash-words">{{ message }} </p>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 <main>
     <div class=container-fluid>
         <div id="payment"></div>
-        <button id="braintree-button">Send to braintree</button>
+        <button id="braintree-button">Confirm payment details</button>
         <form method="POST" action="{{url_for('payment.create')}}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type="text" name="nonce" id="nonce-field">
-            <input type="submit" value="Send nonce to backend">
+            <input type="hidden" name="nonce" id="nonce-field">
+            <input type="submit" value="Make donation now">
         </form>
     </div>
 

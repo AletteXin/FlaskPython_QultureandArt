@@ -11,6 +11,7 @@ from models.images import Image
 from models.user import User
 from peewee import prefetch 
 from .util.payment import *
+from instagram_web.util.google_oauth import oauth
 
 
 assets = Environment(app)
@@ -21,7 +22,7 @@ app.register_blueprint(login_blueprint, url_prefix="/login")
 app.register_blueprint(images_blueprint, url_prefix="/images")
 app.register_blueprint(payment_blueprint, url_prefix = "/payment")
 
-
+oauth.init_app(app)
 
 @app.errorhandler(500)
 def internal_server_error(e):
@@ -66,9 +67,15 @@ def home():
         username = None
 
     users = User.select()
-    images = Image.select()
-    users_with_images = prefetch(users, images)
+    images = Image.select().order_by(Image.date_posted.desc())
+    users_with_images = prefetch(images, users)
     return render_template('home.html', username=username, users_with_images=users_with_images)
+
+
+    # users = User.select()
+    # images = Image.select().order_by(Image.date_posted.desc())
+    # users_with_images = prefetch(users, images)
+    # return render_template('home.html', username=username, users_with_images=users_with_images)
 
 
 

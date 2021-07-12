@@ -38,10 +38,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+
+
+
+
+
   {% endassets %}
 
   {% assets "home_js" %}
   <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  <script src="https://kit.fontawesome.com/eb3b823b28.js" crossorigin="anonymous"></script>
   {% endassets %}
 
   <title>
@@ -73,8 +79,7 @@
     <div class="navbar-user-cont">
 
 
-      <form action="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = username, 
-      show_description = show_description)}}">
+      <form action="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = username, show_description = show_description)}}">
 
         <div>
           <input class="navbar-username" type="submit" value="{{username}}'s gallery">
