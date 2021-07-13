@@ -11,6 +11,7 @@ class Follow(BaseModel, UserMixin):
 
     idol = pw.ForeignKeyField(User)
     follower = pw.ForeignKeyField(User)
+    approved = pw.CharField(default = "0")
 
 # user1 = User.get_or_none(User.id == "17")
 # user2 = User.get_or_none(User.id == "20")

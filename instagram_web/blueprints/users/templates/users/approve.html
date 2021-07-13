@@ -1,0 +1,97 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+
+
+<main>
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col">
+
+
+                <h8>Follower requests</h8>
+
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <p class="flash-words">{{ message }} </p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+                {% if requests %}
+                {% for value in requests %}
+
+                <div class="edit-fields">
+                    <div>
+                        <h8>{{value.follower.username}}</h8>
+
+                        <img class="home-profilepic" src="{{value.follower.image_path}}">
+                    </div>
+                    <form action="{{url_for('users.approve_done', follow_id = value)}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <label class="form-label" for="decision">Accept as follower? </label>
+                        <input class="input-text" list="decision" name="decision">
+
+                        <datalist id="decision">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </datalist>
+
+                        <div>
+                            <input class="submit-button" type="submit" value="Submit decision">
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+
+                {% else %}
+
+                <div>
+                    <h9> No outstanding follower approval requests. </h9>
+                </div>
+
+                {% endif %}
+
+                <div class="following-title-box">
+                    <h13>{{username}}'s Followers ({{length_sf}})</h13>
+                </div>
+                <div class="container-fluid">
+                    {% for value in user_followers %}
+
+                    <div class="following-box">
+                        <a href="{{url_for('users.show', username=username, show_profilepic = value.image_path, show_username = value.username, 
+                                                                      show_description = value.description)}}">
+                            <img class="following-profilepic" src="{{value.image_path}}" />
+
+                            <h16>{{value.username}}</h16>
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+            <div class="col">
+                <img class="img-fluid" src="/static/images/edit-details.jpg" />
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</main>
+
+{% endblock %}

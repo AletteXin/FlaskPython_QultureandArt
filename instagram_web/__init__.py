@@ -68,7 +68,7 @@ def home():
             show_description = user.description
             show_profilepic = user.image_path 
             show_privacy = user.privacy 
-            idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id)
+            idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
 
     else:
         user = None

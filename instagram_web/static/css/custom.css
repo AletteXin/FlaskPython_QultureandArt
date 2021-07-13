@@ -313,6 +313,7 @@ h12{
   padding: 10px;
   display: block;
   background-color: rgba(231, 241, 237, 0.726);
+  
 }
 /* 
 .home-post-box:hover{
@@ -453,8 +454,8 @@ h8{
 /* USER PROFILE  */
 
 .user-profilepic{
-  height: 250px;
-  width: 250px;
+  height: 220px;
+  width: 220px;
   border-radius: 50%;
   margin: 30px;
 }
@@ -469,6 +470,13 @@ h8{
   padding-right: 10px;
   margin: 10px;
   width: 220px;
+
+}
+
+
+.profile-button:hover{
+  outline: solid;
+  outline-color:rgb(132, 155, 145);
 
 }
 
@@ -501,6 +509,44 @@ h8{
   color: rgb(66, 109, 91);
 }
 
+.following-profilepic{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 30px;
+}
+
+
+.following-profilepic:hover{
+  box-shadow: 10px 5px 10px rgb(172, 172, 172);
+}
+
+.following-box{
+  text-align: left;
+  padding-left: 60px;
+  height: 90px;
+
+}
+
+.following-title-box{
+  margin-top: 50px;
+  border-bottom: solid 2px rgb(148, 182, 161);
+
+}
+
+.in-line-block{
+  vertical-align: top;
+}
+
+
+
+
+/* FONT FOR FOLLOWERS AND FOLLOWING  */
+h16{
+  font-family: 'Spectral', serif;
+  color: black;
+  font-size: 16px;
+}
 
 /* INDIVIDUAL USERNAME PROFILE PAGE FONT  */
 

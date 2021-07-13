@@ -57,6 +57,7 @@ def show(show_username):
         user = User.get_or_none(User.id == session["user_id"])
         if user:
             username = user.username
+
         else:
             username = None
         
@@ -67,11 +68,19 @@ def show(show_username):
             show_description = show_user.description
             show_privacy = show_user.privacy 
             images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
-            already_following = Follow.get_or_none(Follow.follower == user and Follow.idol == show_user)
+            approval_record = Follow.get_or_none(Follow.follower == user, Follow.idol == show_user)
+            show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
+            length_si = show_idols.count()
+
+            if approval_record:
+                already_following = True 
+            else: 
+                already_following = False
 
             return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, 
             show_privacy = show_privacy, show_username = show_username, show_description = show_description, 
-            already_following = already_following, images = images)
+            already_following = already_following, approval_record = approval_record, images = images, 
+            show_idols = show_idols,  length_si = length_si)
 
         else:
             return redirect('/404.html')
@@ -200,8 +209,6 @@ def newpic():
 
 
 
-
-
 @users_blueprint.route('/<show_username>/follow')
 @login_required
 def follow(show_username):
@@ -210,27 +217,66 @@ def follow(show_username):
     username = user.username
     follower = user
     idol = User.get_or_none(User.username == show_username)
-    already_following = Follow.get_or_none(Follow.follower_id == follower and Follow.idol_id == idol)
+    privacy = idol.privacy
+    approval_record = Follow.select().where(Follow.follower == follower, Follow.idol == idol)
 
-    if already_following:
-        already_following.delete_instance()
+    if approval_record:
+        record_to_delete = Follow.get_or_none(Follow.follower == follower, Follow.idol == idol)
+        record_to_delete.delete_instance()
+        already_following = False
         flash(f"You are no longer following {show_username}")
-        return redirect(url_for('users.show', username = username, show_username = show_username))
+        return redirect(url_for('users.show', username = username, show_username = show_username, 
+        already_following = already_following, approval_record = approval_record))
     
-    elif Follow.create(idol = idol, follower = user):
+    elif Follow.create(idol = idol, follower = user, approved = privacy):
         flash(f"Congratulations! You are now following {show_username}")
-        return redirect(url_for('users.show', username = username, show_username = show_username))
+        already_following = True 
+        return redirect(url_for('users.show', username = username, show_username = show_username, 
+        already_following = already_following, approval_record = approval_record))
 
     else:
         return redirect('/404.html')
 
-# user = User.select().first()
-# idols = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol == user)
-# print([i for i in followers])
+
+@users_blueprint.route('/approve')
+@login_required
+def approve():
+    user = User.get_or_none(User.id == session['user_id'])
+    username = user.username
+
+    # requests = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "0" )
+    user_followers = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "1")
+    requests = Follow.select().where(Follow.idol_id == user.id, Follow.approved == "0")
+    length_sf = user_followers.count()
+    # for value in requests:
+    #     flash(value.id)
+
+    return render_template ("/users/approve.html", username = username, requests = requests, user_followers = user_followers, length_sf = length_sf)
 
 
-# @users_blueprint.route('/approve')
-# @login_required
-# def approve():
+@users_blueprint.route('/approve_done/<follow_id>', methods = ["POST"])
+@login_required
+def approve_done(follow_id):
+    user = User.get_or_none(User.id == session['user_id'])
+    username = user.username
+    record = Follow.get_or_none(Follow.id == follow_id)
+    decision = request.form['decision']
+
+
+    if decision == "Yes":
+        setattr(record, "approved", "1")
+        record.save()
+    
+    else: 
+        record.delete_instance()
+    
+    requests = Follow.select().where(Follow.idol_id == user.id, Follow.approved == "0")
+    user_followers = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "1")
+    length_sf = user_followers.count()
+    
+    return render_template ("/users/approve.html", username = username, requests = requests, user_followers = user_followers, length_sf = length_sf)
+
 
     
+
+

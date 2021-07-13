@@ -23,7 +23,7 @@ QULTURE & ART
 {% endwith %}
 
 {% for image in users_with_images %}
-{% if image.user.privacy == "1" or image.user in idols %}
+{% if image.user.privacy == "1" or image.user in idols or image.user.username == username %}
 
 <div class="container">
   <div class="row">
