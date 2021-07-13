@@ -22,18 +22,18 @@ QULTURE & ART
 {% endif %}
 {% endwith %}
 
-{% for image in users_with_images %}
-{% if image.user.privacy == "1" or image.user in idols or image.user.username == username %}
+<div class="container my-4 ">
+  {% for image in users_with_images %}
+  {% if image.user.privacy == "1" or image.user in idols or image.user.username == username %}
 
-<div class="container">
+
   <div class="row">
     <div class="col-3">
       <div class=home-user-box>
         <div>
           <h12> {% print(image.user.username) %} </h12>
         </div>
-        <a href="{{url_for('users.show', username=username, show_profilepic = show_profilepic, show_username = image.user.username, 
-      show_description = show_description)}}">
+        <a href="{{url_for('users.show', user = user, show_username = image.user.username)}}">
           <img class="home-profilepic" src="{{image.user.image_path}}">
         </a>
       </div>
@@ -63,12 +63,14 @@ QULTURE & ART
     </div>
   </div>
 
+
+
+
+
+  {% endif %}
+  {% endfor %}
+
 </div>
-
-
-
-{% endif %}
-{% endfor %}
 
 <!-- <div class="navbar">
 

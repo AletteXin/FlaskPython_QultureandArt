@@ -1,5 +1,5 @@
 from app import *
-from flask import render_template, session, flash
+from flask import render_template, session, flash, request, redirect, url_for
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 from flask_login import LoginManager, login_user
@@ -92,6 +92,41 @@ def home():
     # images = Image.select().order_by(Image.date_posted.desc())
     # users_with_images = prefetch(users, images)
     # return render_template('home.html', username=username, users_with_images=users_with_images)
+
+
+
+@app.route("/searchbar", methods = ["POST"])
+
+def site_search():
+    
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        username = user.username
+    
+    else:
+        user = None 
+        username = None
+
+    show_username = request.form['site-search']
+    show_user = User.get_or_none(User.username == show_username)
+        
+    if show_user:
+        show_profilepic = show_user.image_path
+        show_description = show_user.description
+        show_privacy = show_user.privacy 
+        images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
+        approval_record = Follow.get_or_none(Follow.follower == user, Follow.idol == show_user)
+        show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
+        length_si = show_idols.count()
+            
+        
+        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, 
+        show_username = show_username, show_description = show_description, images = images, 
+        show_idols = show_idols,  length_si = length_si, show_privacy = show_privacy))
+        
+    else: 
+        flash("Username not found")
+        return redirect('/')
 
 
 

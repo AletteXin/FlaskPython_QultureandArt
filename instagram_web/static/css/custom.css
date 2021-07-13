@@ -243,6 +243,30 @@ h7{
 }
 
 
+.search-button{
+  border-radius: 50px;
+  border: solid;
+  border-color:rgb(148, 182, 161);
+  border-width: 1px;
+  outline: none;
+  background-color: white;
+}
+
+
+.search-button:hover{
+  box-shadow:3px 3px 3px rgb(148, 182, 161);
+
+}
+
+#site-search{
+  border:none;
+  outline: none;
+  font-family: 'Open Sans Condensed', sans-serif;
+  width: 200px;
+}
+
+
+
 .homepagelink{
   background-color: white;
   border: none;
@@ -412,7 +436,7 @@ footer a {
 }
 
 h9{
-  font-size: 17px;
+  font-size: 15px;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -534,9 +558,6 @@ h8{
 
 }
 
-.in-line-block{
-  vertical-align: top;
-}
 
 
 

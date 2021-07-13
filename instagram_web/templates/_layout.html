@@ -35,9 +35,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
 
 
 
@@ -66,9 +66,23 @@
 <body>
 
   <header>
+    <div class="container-fluid">
+      <div class="row ">
+        <div class="col-4">
 
-
-    <h7>QULTURE & ART</h7>
+        </div>
+        <div class="col-4 ">
+          <h7>QULTURE & ART</h7>
+        </div>
+        <div class="col-4 my-3 pr-4 align-items-center d-flex justify-content-end">
+          <form action="{{url_for('site_search')}}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="search" id="site-search" name="site-search" placeholder="Search username">
+            <button class="search-button" type=submit><i class="fas fa-chevron-circle-right fa-lg"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
   </header>
 
 
@@ -154,7 +168,7 @@
   </main>
 
   <footer>
-    <h9> Designed by AletteXin </h9> </a>
+    <h9> DESIGNED AND CODED BY ALETTEXIN </h9> </a>
   </footer>
 
 </body>
