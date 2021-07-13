@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from models.base_model import BaseModel
 from models.user import User 
 
-db = PostgresqlExtDatabase('follow_db')
+# db = PostgresqlExtDatabase('follow_db')
 
 
 class Follow(BaseModel, UserMixin):
@@ -24,6 +24,6 @@ class Follow(BaseModel, UserMixin):
 # Follow.get_or_none(Follow.id ).delete_instance()
 
 
-user = User.select().first()
-idols = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol == user)
-print([i for i in followers])
+# user = User.select().first()
+# idols = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol == user)
+# print([i for i in followers])

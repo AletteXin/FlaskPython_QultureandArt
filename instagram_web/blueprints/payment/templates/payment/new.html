@@ -23,7 +23,6 @@
             <input type="hidden" name="nonce" id="nonce-field">
             <input type="submit" value="Make donation now" id = "submit-button">
         </form>
-        <!-- <button id="braintree-button">Make donation now</button> -->
     </div>
 
     <script type="text/javascript">
@@ -36,7 +35,7 @@
             braintreeButton.onclick = () => {
                 paymentForm.requestPaymentMethod((error, payload) => {
                     document.getElementById("nonce-field").value = payload.nonce
-                    document.getElementById(paymentform).submit()
+                    document.getElementById("paymentform").submit()
                 })
             }
         })

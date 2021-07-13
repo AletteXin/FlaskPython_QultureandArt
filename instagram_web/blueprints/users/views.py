@@ -9,6 +9,7 @@ from instagram_web.util.helpers import upload_file_to_s3
 from app import *
 from models.images import Image
 from peewee import prefetch 
+from models.follow import Follow
 
 
 users_blueprint = Blueprint('users',
@@ -66,8 +67,11 @@ def show(show_username):
             show_description = show_user.description
             show_privacy = show_user.privacy 
             images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
+            already_following = Follow.get_or_none(Follow.follower == user and Follow.idol == show_user)
+
             return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, 
-            show_privacy = show_privacy, show_username = show_username, show_description = show_description, images = images)
+            show_privacy = show_privacy, show_username = show_username, show_description = show_description, 
+            already_following = already_following, images = images)
 
         else:
             return redirect('/404.html')
@@ -193,3 +197,40 @@ def newpic():
             return redirect(url_for('users.upload', username = usermame))
     
     return redirect(url_for('users.upload', username = usermame))
+
+
+
+
+
+@users_blueprint.route('/<show_username>/follow')
+@login_required
+def follow(show_username):
+    
+    user = User.get_or_none(User.id == session['user_id'])
+    username = user.username
+    follower = user
+    idol = User.get_or_none(User.username == show_username)
+    already_following = Follow.get_or_none(Follow.follower_id == follower and Follow.idol_id == idol)
+
+    if already_following:
+        already_following.delete_instance()
+        flash(f"You are no longer following {show_username}")
+        return redirect(url_for('users.show', username = username, show_username = show_username))
+    
+    elif Follow.create(idol = idol, follower = user):
+        flash(f"Congratulations! You are now following {show_username}")
+        return redirect(url_for('users.show', username = username, show_username = show_username))
+
+    else:
+        return redirect('/404.html')
+
+# user = User.select().first()
+# idols = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol == user)
+# print([i for i in followers])
+
+
+# @users_blueprint.route('/approve')
+# @login_required
+# def approve():
+
+    

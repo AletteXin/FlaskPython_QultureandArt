@@ -1,5 +1,5 @@
 from app import *
-from flask import render_template, session
+from flask import render_template, session, flash
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 from flask_login import LoginManager, login_user
@@ -12,6 +12,7 @@ from models.user import User
 from peewee import prefetch 
 from .util.payment import *
 from instagram_web.util.google_oauth import oauth
+from models.follow import Follow
 
 
 assets = Environment(app)
@@ -67,19 +68,24 @@ def home():
             show_description = user.description
             show_profilepic = user.image_path 
             show_privacy = user.privacy 
+            idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id)
 
     else:
+        user = None
         username = None
         show_username = None
         show_description = None
         show_profilepic = None 
         show_privacy = None
+        idols = []
 
     users = User.select()
     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
+
     return render_template('home.html', username = username, show_username = show_username, 
-    show_privacy = show_privacy, show_description = show_description, show_profilepic = show_profilepic, users_with_images = users_with_images)
+    show_privacy = show_privacy, show_description = show_description, show_profilepic = show_profilepic, 
+    users_with_images = users_with_images, idols = idols)
 
 
     # users = User.select()

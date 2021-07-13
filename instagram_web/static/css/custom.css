@@ -479,6 +479,27 @@ h8{
   padding-right: 100px;
 }
 
+.follow-button{
+  background-color: rgb(179, 209, 196);
+  color: black;
+  border: solid;
+  border-color: rgb(66, 109, 91);
+  font-family: 'Spectral', serif;
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  margin-left: 3px;
+  width: 150px;
+  font-weight: 400;
+}
+
+
+
+.follow-button:hover{
+  background-color: rgb(255, 255, 255);
+  color: rgb(66, 109, 91);
+}
 
 
 /* INDIVIDUAL USERNAME PROFILE PAGE FONT  */

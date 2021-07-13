@@ -39,6 +39,21 @@
                         </div>
                     </form>
 
+                    {% elif already_following %}
+
+                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                        <div>
+                            <input class="follow-button" type="submit" value="Stop following">
+                        </div>
+                    </form>
+
+                    {% else %}
+
+                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                        <div>
+                            <input class="follow-button" type="submit" value="+ Follow">
+                        </div>
+                    </form>
 
                     {% endif %}
 
@@ -58,7 +73,7 @@
                 {% endif %}
                 {% endwith %}
 
-                {% if show_privacy == "1" or show_username == current_user.username %}
+                {% if show_privacy == "1" or show_username == current_user.username or already_following %}
                 {% for value in images %}
 
                 <div class="container-fluid">
