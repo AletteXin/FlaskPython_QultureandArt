@@ -39,11 +39,8 @@ def create():
     if new_user.save():
         user = User.get_or_none(User.username == username)
         session['user_id'] = user.id
-        show_profilepic = user.image_path
-        show_description = user.description
         login_user(user)
-        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, 
-        show_username = username, show_description = show_description))
+        return redirect(url_for('users.show', show_user = user, show_username = username))
     
     else:
         return redirect('/users/new')
@@ -55,36 +52,27 @@ def show(show_username):
     
     if session.get('user_id'):
         user = User.get_or_none(User.id == session["user_id"])
-        if user:
-            username = user.username
+    else:
+        user = None 
+    
+    show_user = User.get_or_none(User.username == show_username)
 
-        else:
-            username = None
-        
-        show_user = User.get_or_none(User.username == show_username)
-        if show_user:
-            show_username = show_user.username
-            show_profilepic = show_user.image_path
-            show_description = show_user.description
-            show_privacy = show_user.privacy 
-            images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
-            approval_record = Follow.get_or_none(Follow.follower == user, Follow.idol == show_user)
-            show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
-            length_si = show_idols.count()
+    if show_user:
+        show_username = show_user.username
+        images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
+        approval_record = Follow.get_or_none(Follow.follower == user, Follow.idol == show_user)
+        show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
+        length_si = show_idols.count()
 
-            if approval_record:
-                already_following = True 
-            else: 
-                already_following = False
+        if approval_record:
+            already_following = True 
+        else: 
+            already_following = False
 
-            return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, 
-            show_privacy = show_privacy, show_username = show_username, show_description = show_description, 
-            already_following = already_following, approval_record = approval_record, images = images, 
-            show_idols = show_idols,  length_si = length_si)
+        return render_template('/users/profile.html', show_user = show_user, 
+        already_following = already_following, approval_record = approval_record, images = images, 
+        show_idols = show_idols,  length_si = length_si)
 
-        else:
-            return redirect('/404.html')
-        
         
     else:
         return redirect (url_for('login.new'))
@@ -98,97 +86,89 @@ def index():
 @users_blueprint.route('/edit', methods=['GET'])
 @login_required
 def edit():
-    user = User.get_or_none(User.id == session['user_id'])
-    if user:
-        username = user.username
-    else:
-        username = None 
-    return render_template("/users/edit.html", username = username, show_username = username )
+    # user = User.get_or_none(User.id == session['user_id'])
+    # if not user:
+    #     user = None 
+    return render_template("/users/edit.html", show_user = current_user )
 
 
 @users_blueprint.route('/update/<field>', methods=['POST'])
 @login_required
 def update(field):
-    if session.get('user_id'):
-        user = User.get_or_none(User.id == session['user_id'])
-        if user:
-            new_info = request.form[field]
+    # if session.get('user_id'):
+    #     user = User.get_or_none(User.id == session['user_id'])
+    if user:
+        new_info = request.form[field]
             
-            if field == "email":
-                email_existing = User.get_or_none(User.email == new_info)
-                if email_existing:
-                    flash("There is an existing account associated with this email.")
-                    return redirect (url_for('users.edit'))
+        if field == "email":
+            email_existing = User.get_or_none(User.email == new_info)
+            if email_existing:
+                flash("There is an existing account associated with this email.")
+                return redirect (url_for('users.edit'))
             
-            if field == "username":
-                existing_username = User.get_or_none(User.username == new_info)
-                if existing_username:
-                    flash("Sadly, this username has been taken. Please choose another.")
-                    return redirect (url_for('users.edit'))
+        if field == "username":
+            existing_username = User.get_or_none(User.username == new_info)
+            if existing_username:
+                flash("Sadly, this username has been taken. Please choose another.")
+                return redirect (url_for('users.edit'))
             
-            if field == "password":
-                reenter_password = request.form['reenter_password']
+        if field == "password":
+            reenter_password = request.form['reenter_password']
 
-                if new_info != reenter_password:
-                    flash("Passwords do not match. Please reenter details.")
-                    return redirect (url_for('users.edit'))
+            if new_info != reenter_password:
+                flash("Passwords do not match. Please reenter details.")
+                return redirect (url_for('users.edit'))
 
-            if field == "privacy":
-                if new_info == "Public":
-                    new_info = "1"
-                else:
-                    new_info = "0"
+        if field == "privacy":
+            if new_info == "Public":
+                new_info = "1"
+            else:
+                new_info = "0"
 
-            setattr(user, field, new_info)
-            user.save()
-            
-            # update = User.update(**{field: new_info}).where(User.id == session.get('user_id'))
-            # update.execute()
+        setattr(current_user, field, new_info)
+        current_user.save()
 
-            flash("Your info has been updated.")
-        else:
-            flash("An error occured, please try again.")
-        return redirect (url_for('users.edit'))
-
+        flash("Your info has been updated.")
     else:
         flash("An error occured, please try again.")
-        return redirect (url_for('users.edit'))
+    return redirect (url_for('users.edit'))
+
+    # else:
+    #     flash("An error occured, please try again.")
+    #     return redirect (url_for('users.edit'))
 
 
 @users_blueprint.route('/upload')
 @login_required
 def upload():
-    user = User.get_or_none(User.id == session['user_id'])
-    if user:
-        username = user.username
-    else:
-        username = None 
+    # user = User.get_or_none(User.id == session['user_id'])
+    # if not user:
+    #     user = None 
 
-    return render_template ("/users/upload.html", username = username)
+    return render_template ("/users/upload.html")
 
 
 @users_blueprint.route('/upload/profilepic/', methods=['POST'])
 @login_required
 def newpic():
-    user = User.get_or_none(User.id == session['user_id'])
-    if user:
-        username = user.username
-    else:
-        username = None 
     
-    if user:
-        
+    user = User.get_or_none(User.id == session['user_id'])
+    
+    if not user:
+        user = None 
+    
+    else:
         print(request.files["profilepic"])
 
         if "profilepic" not in request.files:
             flash ("No profilepic key in request.files.")
-            return redirect(url_for('users.upload', username = username))
+            return redirect(url_for('users.upload'))
 
         file = request.files["profilepic"]
 
         if file.filename == "":
             flash("Please attach a file.")
-            return redirect(url_for('users.upload', username = username))
+            return redirect(url_for('users.upload'))
 
         file.filename = secure_filename(file.filename)
         print(file.filename)
@@ -200,12 +180,12 @@ def newpic():
 
         if user.save():
             flash("Image uploaded successfully!")
-            return redirect(url_for('users.upload', username = username))
+            return redirect(url_for('users.upload'))
         else:
             flash("Image upload unsuccessful. Please try again.")
-            return redirect(url_for('users.upload', username = usermame))
+            return redirect(url_for('users.upload'))
     
-    return redirect(url_for('users.upload', username = usermame))
+    return redirect(url_for('users.upload'))
 
 
 
@@ -214,7 +194,6 @@ def newpic():
 def follow(show_username):
     
     user = User.get_or_none(User.id == session['user_id'])
-    username = user.username
     follower = user
     idol = User.get_or_none(User.username == show_username)
     privacy = idol.privacy
@@ -225,13 +204,13 @@ def follow(show_username):
         record_to_delete.delete_instance()
         already_following = False
         flash(f"You are no longer following {show_username}")
-        return redirect(url_for('users.show', username = username, show_username = show_username, 
+        return redirect(url_for('users.show', user = user, show_user = idol, show_username = show_username,
         already_following = already_following, approval_record = approval_record))
     
     elif Follow.create(idol = idol, follower = user, approved = privacy):
         flash(f"Congratulations! You are now following {show_username}")
         already_following = True 
-        return redirect(url_for('users.show', username = username, show_username = show_username, 
+        return redirect(url_for('users.show', user = user, show_user = idol, show_username = show_username,
         already_following = already_following, approval_record = approval_record))
 
     else:
@@ -242,26 +221,19 @@ def follow(show_username):
 @login_required
 def approve():
     user = User.get_or_none(User.id == session['user_id'])
-    username = user.username
-
-    # requests = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "0" )
     user_followers = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "1")
     requests = Follow.select().where(Follow.idol_id == user.id, Follow.approved == "0")
     length_sf = user_followers.count()
-    # for value in requests:
-    #     flash(value.id)
 
-    return render_template ("/users/approve.html", username = username, requests = requests, user_followers = user_followers, length_sf = length_sf)
+    return render_template ("/users/approve.html", requests = requests, user_followers = user_followers, length_sf = length_sf)
 
 
 @users_blueprint.route('/approve_done/<follow_id>', methods = ["POST"])
 @login_required
 def approve_done(follow_id):
     user = User.get_or_none(User.id == session['user_id'])
-    username = user.username
     record = Follow.get_or_none(Follow.id == follow_id)
     decision = request.form['decision']
-
 
     if decision == "Yes":
         setattr(record, "approved", "1")
@@ -274,7 +246,7 @@ def approve_done(follow_id):
     user_followers = User.select().join(Follow, on = Follow.follower_id == User.id).where(Follow.idol_id == user.id, Follow.approved == "1")
     length_sf = user_followers.count()
     
-    return render_template ("/users/approve.html", username = username, requests = requests, user_followers = user_followers, length_sf = length_sf)
+    return render_template ("/users/approve.html", requests = requests, user_followers = user_followers, length_sf = length_sf)
 
 
     

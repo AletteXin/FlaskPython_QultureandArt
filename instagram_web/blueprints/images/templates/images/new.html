@@ -3,62 +3,57 @@
 {% block content %}
 
 
-
 <main>
 
     <div class="container-fluid">
-        <div class="row align-items-center">
-
+        <div class="row align-items-center ">
 
             <div class="col" class="center">
+                <img class="img-fluid" src="/static/images/new-story.jpg" />
+            </div>
 
+            <div class="col my-4" class="center">
 
                 <h8>Post a new story </h8>
-                <form action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <p class="flash-words">{{ message }} </p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+                <div class="edit-fields">
+
+                    <form action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                        <div class="padding-left-align">
+                            <label class="form-label" for="story_title">Title</label>
+                            <input class="input-text" type="text" name="story_title">
+                        </div>
 
 
-                    <h9>Title</h9>
-                    <div class="padding-left-align">
-                        <label class="form-label" for="story_title"></label>
-                        <input type="text" name="story_title">
-                    </div>
+                        <div class="padding-left-align">
+                            <label class="form-label" for="story_image">Photo</label>
+                            <input type="file" name="story_image">
+                        </div>
 
-                    <h9>Attach a photo </h9>
-                    <div class="padding-left-align">
-                        <label class="form-label" for="story_image"></label>
-                        <input type="file" name="story_image">
-                    </div>
 
-                    <h9>Describe your experience/views</h9>
-                    <div class="padding-left-align">
-                        <label class="form-label" for="story_description"></label>
-                        <input type="text" name="story_description">
-                    </div>
-                    <div class="padding-left-align">
-                        <input class="submit-button" type="submit" value="Share my experience">
-                    </div>
-                </form>
+                        <div class="padding-left-align">
+                            <label class="form-label" for="story_description">Description</label>
+                            <input class="input-text" type="text" name="story_description">
+                        </div>
+                        <div class="padding-left-align">
+                            <input class="submit-button" type="submit" value="Share my experience">
+                        </div>
+                    </form>
+                </div>
             </div>
-
-
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul class=flashes>
-                {% for message in messages %}
-                <p class="flash-words">{{ message }} </p>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-
-            <div class="col">
-
-
-            </div>
-
         </div>
-
     </div>
 </main>
 

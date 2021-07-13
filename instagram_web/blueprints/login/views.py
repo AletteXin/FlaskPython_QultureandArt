@@ -9,7 +9,6 @@ from models.images import Image
 from instagram_web.util.google_oauth import oauth
 
 
-
 login_blueprint = Blueprint('login',
                             __name__,
                             template_folder='templates')
@@ -31,7 +30,7 @@ def create():
         show_profilepic = user.image_path
         images = Image.select().where(Image.user_id == user.id)
         login_user(user)
-        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username, images = images))
+        return redirect(url_for('users.show', user = user, show_user = user, show_username = username, images = images))
 
     else: 
         flash("Invalid username and/or password. Please enter your details again.")
@@ -43,10 +42,8 @@ def destroy(username):
     
     user = User.get_or_none(User.username == username)
     session['user_id'] = None
-    # User.get_or_none(User.email == "alettengxinling@gmail.com").delete_instance()
     logout_user()
     return redirect (url_for('home'))
-
 
 
 @login_blueprint.route("/google_login")
@@ -58,18 +55,14 @@ def google_login():
 def authorize():
     oauth.google.authorize_access_token()
     email = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()['email']
-    # name = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()['given_name']
 
     user = User.get_or_none(User.email == email)
     if user: 
         user = User.get_or_none(User.email == email)
         session['user_id'] = user.id
         login_user(user)
-        username = user.username 
-        show_profilepic = user.image_path 
-        show_description = user.description 
 
-        return redirect(url_for('home', username = username, show_username = username, show_profilepic = show_profilepic, show_description = show_description))
+        return redirect(url_for('home', user = user, show_user = user))
     
     else:
         password = os.environ.get("password")
@@ -79,12 +72,9 @@ def authorize():
             user = User.get_or_none(User.email == email)
             session['user_id'] = user.id
             login_user(user)
-            username = user.username 
-            show_profilepic = user.image_path
-            show_description = user.description
             
             flash("Please update your password and choose a username before proceeding onto other pages.")
-            return redirect(url_for('users.edit', username = username, show_username = username, show_profilepic = show_profilepic, show_description = show_description))
+            return redirect(url_for('users.edit', user = user, show_user = user))
         
         else:
             return redirect('/users/new')

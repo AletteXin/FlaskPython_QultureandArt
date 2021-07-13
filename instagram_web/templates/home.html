@@ -6,8 +6,6 @@ QULTURE & ART
 
 {% block header %}
 
-
-
 {% endblock %}
 
 {% block content %}
@@ -63,42 +61,9 @@ QULTURE & ART
     </div>
   </div>
 
-
-
-
-
   {% endif %}
   {% endfor %}
 
 </div>
-
-<!-- <div class="navbar">
-
-<form action="{{url_for('home')}}">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-  <div>
-    <input class="homepagelink" type="submit" value="Home">
-  </div>
-</form>
-
-<form action="{{url_for('login.new')}}">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-  <div>
-    <input class="homepagelink" type="submit" value="Login">
-  </div>
-</form>
-
-<form action="{{url_for('users.new')}}">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-  <div>
-    <input class="homepagelink" type="submit" value="Sign-up">
-  </div>
-</form>
-
-</div> -->
-
-
-
-
 
 {% endblock %}

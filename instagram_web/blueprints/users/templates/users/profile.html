@@ -1,30 +1,23 @@
 {% extends "_layout.html" %}
 
-
-
 {% block content %}
 
 <main>
 
-
-
     <div class="container-fluid  my-4 ">
         <div class="row align-items-start">
 
-
             <div class="col-4">
                 <div class="profile-background">
-
-                        <h11>{{show_username}}</h11>
-                  
-                    <img class="user-profilepic" src="{{show_profilepic}}" />
+                    <div>
+                        <h11>{{show_user.username}}</h11>
+                    </div>
+                    <img class="user-profilepic" src="{{show_user.image_path}}" />
                     <div class="profile-description">
-                        <h9>"{{show_description}}"</h9>
+                        <h9>"{{show_user.description}}"</h9>
                     </div>
 
-
-                    {% if current_user.username == show_username %}
-
+                    {% if current_user.username == show_user.username %}
 
                     <form action="{{url_for('users.approve')}}">
                         <div>
@@ -52,8 +45,8 @@
                         {% for value in show_idols %}
 
                         <div class="following-box">
-                            <a href="{{url_for('users.show', username=username, show_profilepic = value.image_path, show_username = value.username, 
-                                  show_description = value.description)}}">
+                            <a
+                                href="{{url_for('users.show', user=user, show_user = value, show_username = value.username)}}">
                                 <img class="following-profilepic" src="{{value.image_path}}" />
 
                                 <h16>{{value.username}}</h16>
@@ -64,13 +57,9 @@
                         {% endfor %}
                     </div>
 
-
-
-
-
                     {% elif approval_record.approved == "1" %}
 
-                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                    <form action="{{url_for('users.follow', show_username = show_user.username)}}">
                         <div>
                             <input class="follow-button" type="submit" value="Stop following">
                         </div>
@@ -83,8 +72,8 @@
                         {% for value in show_idols %}
 
                         <div class="following-box">
-                            <a href="{{url_for('users.show', username=username, show_profilepic = value.image_path, show_username = value.username, 
-                            show_description = value.description)}}">
+                            <a
+                                href="{{url_for('users.show', user=user, show_user = value, show_username = value.username)}}">
                                 <img class="following-profilepic" src="{{value.image_path}}" />
 
                                 <h16>{{value.username}}</h16>
@@ -97,10 +86,10 @@
 
 
 
-
                     {% elif approval_record.approved == "1" %}
 
-                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                    <form
+                        action="{{url_for('users.follow', show_user = show_user, show_username = show_user.username)}}">
                         <div>
                             <input class="follow-button" type="submit" value="Stop following">
                         </div>
@@ -128,18 +117,18 @@
 
                     {% elif already_following == True %}
 
-                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                    <form
+                        action="{{url_for('users.follow', show_user = show_user, show_username = show_user.username)}}">
                         <div>
                             <input class="follow-button" type="submit" value="Request pending">
                         </div>
                     </form>
 
 
-
-
                     {% else %}
 
-                    <form action="{{url_for('users.follow', show_username = show_username)}}">
+                    <form
+                        action="{{url_for('users.follow', show_user = show_user, show_username = show_user.username )}}">
                         <div>
                             <input class="follow-button" type="submit" value="+ Follow">
                         </div>
@@ -152,6 +141,7 @@
 
             <div class="col-8 d-flex align-items-start">
 
+                <div class="container-fluid">
 
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -164,121 +154,85 @@
                     {% endwith %}
 
 
-                        <div class="container-fluid">
+                    {% if show_user.privacy == "1" or show_user.username == current_user.username or
+                    (approval_record.approved == "1") %}
+                    {% for value in images %}
 
-
-
-                            {% if show_privacy == "1" or show_username == current_user.username or
-                            (approval_record.approved == "1") %}
-                            {% for value in images %}
-
-
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="home-post-box">
-
-                                        <div>
-                                            <h13>{% print(value.title) %}</h13>
-                                        </div>
-                                        <div>
-                                            <h14>{% print(value.date_posted) %}</h14>
-                                        </div>
-                                        <div>
-                                            <h15>{% print(value.description) %}</h15>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="like-donate-box">
-
-                                        {% if username == show_username %}
-
-                                        <form action="{{url_for('images.edit', id = value.id)}}">
-                                            <button class="like-donate-button" type="submit"><i
-                                                    class="fas fa-edit fa-lg"></i></button>
-                                        </form>
-
-                                        <form action="{{url_for('images.destroy', id = value.id)}}">
-                                            <button class="like-donate-button" type="submit"><i
-                                                    class="far fa-trash-alt fa-lg"></i></button>
-                                        </form>
-
-                                        {% endif %}
-
-                                        <button class="like-donate-button"><i class="fas fa-heart fa-lg"></i></button>
-
-                                        <form action="{{url_for('payment.new')}}">
-                                            <button class="like-donate-button" type=submit><i
-                                                    class="fas fa-hand-holding-usd fa-lg"></i></button>
-                                        </form>
-
-
-                                    </div>
-
-                                </div>
-                                <div class="col-4">
-                                    <img class="home-postpic" src="{{value.image_url}}" />
-
-                                </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="home-post-box">
 
                                 <div>
-
-
+                                    <h13>{% print(value.title) %}</h13>
                                 </div>
-                                <div class="home-line">
-
+                                <div>
+                                    <h14>{% print(value.date_posted) %}</h14>
                                 </div>
-                                {% endfor %}
-                                {% else %}
-
-                                <h7>Private user. Please request for permission. </h7>
+                                <div>
+                                    <h15>{% print(value.description) %}</h15>
+                                </div>
 
                             </div>
 
-                            {% endif %}
+                            <div class="like-donate-box">
 
+                                {% if current_user.username == show_user.username %}
 
+                                <form action="{{url_for('images.edit', id = value.id)}}">
+                                    <button class="like-donate-button" type="submit"><i
+                                            class="fas fa-edit fa-lg"></i></button>
+                                </form>
 
+                                <form action="{{url_for('images.destroy', id = value.id)}}">
+                                    <button class="like-donate-button" type="submit"><i
+                                            class="far fa-trash-alt fa-lg"></i></button>
+                                </form>
 
+                                {% endif %}
+
+                                <button class="like-donate-button"><i class="fas fa-heart fa-lg"></i></button>
+
+                                <form action="{{url_for('payment.new')}}">
+                                    <button class="like-donate-button" type=submit><i
+                                            class="fas fa-hand-holding-usd fa-lg"></i></button>
+                                </form>
+
+                            </div>
 
                         </div>
+                        <div class="col-4">
+                            <img class="home-postpic" src="{{value.image_url}}" />
+
+                        </div>
+
+
+                        <div class="home-line">
+
+                        </div>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <h7>Private user. Please request for permission. </h7>
+
                     </div>
 
+                    {% endif %}
+
+
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
-
-            <div class="col">
-
-
-
-            </div>
-
         </div>
 
     </div>
 
+    <div class="col">
+
+    </div>
+
+
 </main>
 
 
-
-
 {% endblock %}
-
-<!-- put a form here  -->
-
-<!-- 
-and then in views.py need to put in the function  -->

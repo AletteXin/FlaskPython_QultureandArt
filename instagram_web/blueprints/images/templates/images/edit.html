@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-
 <main>
 
     <div class="container">
@@ -12,9 +10,7 @@
 
             <div class="col">
 
-
                 <h8>Edit post</h8>
-
 
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -27,21 +23,19 @@
                 {% endwith %}
 
                 <div class="edit-fields">
-                    <!-- 
-<form action="{{url_for('images.update', id = '{% print(id) %}', story_user_id = '{% print(story_user_id) %}', story_title = '{% print(story_title) %}', story_description = '{% print(story_description) %}', story_image_url = '{% print(story_image_url) %}')}}"
-    method="POST" enctype="multipart/form-data"> -->
+
                     <form action="{{url_for('images.update', id = id)}}" method="POST" enctype="multipart/form-data">
 
                         <div>
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                             <label class="form-label" for="new_title">Title: </label>
-                            <input class="input-text" type="text" name="new_title" value="{% print(story_title) %}">
+                            <input class="input-text" type="text" name="new_title" value="{% print(story_to_edit.title) %}">
                         </div>
                         <div>
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                             <label class="form-label" for="new_description">Description: </label>
                             <input class="input-text" type="text" name="new_description"
-                                value="{% print(story_description) %}">
+                                value="{% print(story_to_edit.description) %}">
                         </div>
 
                         <div>
@@ -60,7 +54,7 @@
             </div>
 
             <div class="col">
-                <img class="img-fluid" src="{% print(story_image_url) %}" />
+                <img class="img-fluid" src="{% print(story_to_edit.image_url) %}" />
             </div>
 
 

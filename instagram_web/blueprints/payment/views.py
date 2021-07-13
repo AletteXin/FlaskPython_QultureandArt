@@ -25,9 +25,8 @@ def new():
     print(token)
     user_id = session['user_id'] 
     user = User.get_or_none(User.id == user_id)
-    username = user.username
 
-    return render_template('/payment/new.html', token = token, username=username)
+    return render_template('/payment/new.html', token = token, user = user)
 
 
 @payment_blueprint.route('/create', methods=['POST'])

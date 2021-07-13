@@ -14,7 +14,6 @@ from .util.payment import *
 from instagram_web.util.google_oauth import oauth
 from models.follow import Follow
 
-
 assets = Environment(app)
 assets.register(bundles)
 
@@ -46,6 +45,7 @@ def page_not_found(e):
         username = None
     return render_template('404.html', username = username), 404
 
+
 @app.errorhandler(401)
 def unauthorized_entry(e):
     if session.get('user_id'):
@@ -63,36 +63,17 @@ def home():
     if session.get('user_id'):
         user = User.get_or_none(User.id == session["user_id"])
         if user:
-            username = user.username
-            show_username = user.username 
-            show_description = user.description
-            show_profilepic = user.image_path 
-            show_privacy = user.privacy 
             idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
-
+    
     else:
-        user = None
-        username = None
-        show_username = None
-        show_description = None
-        show_profilepic = None 
-        show_privacy = None
+        user = None 
         idols = []
 
     users = User.select()
     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
 
-    return render_template('home.html', username = username, show_username = show_username, 
-    show_privacy = show_privacy, show_description = show_description, show_profilepic = show_profilepic, 
-    users_with_images = users_with_images, idols = idols)
-
-
-    # users = User.select()
-    # images = Image.select().order_by(Image.date_posted.desc())
-    # users_with_images = prefetch(users, images)
-    # return render_template('home.html', username=username, users_with_images=users_with_images)
-
+    return render_template('home.html', user = user, users_with_images = users_with_images, idols = idols)
 
 
 @app.route("/searchbar", methods = ["POST"])
@@ -119,7 +100,6 @@ def site_search():
         show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
         length_si = show_idols.count()
             
-        
         return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, 
         show_username = show_username, show_description = show_description, images = images, 
         show_idols = show_idols,  length_si = length_si, show_privacy = show_privacy))

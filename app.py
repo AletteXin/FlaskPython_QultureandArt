@@ -37,9 +37,6 @@ def create_app():
     app = Flask(__name__)
     csrf.init_app(app)
 
-    # secret_key = b'_5#y2L"F4Q8zTYH##2Tum7/'
-    # login_manager.login_view = 'users.login'
-
 
 @app.before_request
 def before_request():

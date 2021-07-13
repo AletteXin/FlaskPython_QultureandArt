@@ -6,25 +6,21 @@ body {
 
 main {
   padding-bottom: 15px;
-
 }
 
 a {
   color:rgb(87, 141, 119);
 }
 
-
 a:hover {
   text-decoration: underline;
   color:rgb(87, 141, 119);
 }
 
-
 .flash-words{
   color: rgb(128, 38, 38);
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 20px;
-
 }
 /* GENERAL  */
 
@@ -37,7 +33,6 @@ a:hover {
 .margin-top{
   padding-top: 50px;
 }
-
 
 /* FORMS */
 
@@ -61,7 +56,6 @@ a:hover {
   outline: none;
 
 }
-
 
 .submit-button{
   background-color: rgb(66, 109, 91);
@@ -89,7 +83,6 @@ a:hover {
   margin-top: 10px;
 }
 
-
 .submit-button-google{
   background-color:  rgb(6, 4, 138);
   color: white;
@@ -102,8 +95,6 @@ a:hover {
   width: 170px;
   margin-top: 10px;
 }
-
-
 
 .submit-button-google:hover{
   background-color:  rgb(128, 38, 38);
@@ -163,7 +154,6 @@ h7{
   font-family: 'Spectral', serif;
   color: rgb(0, 0, 0);
   font-size: 40px;
-
 }
 
 .navbar{
@@ -176,8 +166,6 @@ h7{
   justify-content: center;
   border-bottom: 1px solid black;
   z-index: 1;
-
-
 }
 
 .navbar-user{
@@ -192,7 +180,6 @@ h7{
   z-index: 1;
   vertical-align: middle;
   padding-top:7px;
-
 }
 
 
@@ -212,8 +199,6 @@ h7{
   align-items: left;
   margin-bottom: 3px;
   margin-top: 0px;
-
-
 }
 
 .navbar-username:hover{
@@ -255,7 +240,6 @@ h7{
 
 .search-button:hover{
   box-shadow:3px 3px 3px rgb(148, 182, 161);
-
 }
 
 #site-search{
@@ -264,7 +248,6 @@ h7{
   font-family: 'Open Sans Condensed', sans-serif;
   width: 200px;
 }
-
 
 
 .homepagelink{
@@ -290,7 +273,6 @@ h7{
   color: rgb(0, 0, 0);
   font-size: 17px;
   font-style: italic;
-
 }
 
 /* HOMEPAGE  */
@@ -324,7 +306,6 @@ h12{
 }
 
 
-
 .home-post-box{
   border: solid;
   border-width: 1px;
@@ -337,7 +318,6 @@ h12{
   padding: 10px;
   display: block;
   background-color: rgba(231, 241, 237, 0.726);
-  
 }
 /* 
 .home-post-box:hover{
@@ -356,12 +336,14 @@ h12{
   margin: 10px;
 }
 
+
 .like-donate-box{
   text-align: right;
   display: flex;
   justify-content: right;
   align-items: right;
 }
+
 
 .like-donate-button{
   width: 50px;
@@ -374,7 +356,6 @@ h12{
 
 
 .like-donate-button:hover{
-
   border-radius: 50px;
   box-shadow:3px 3px 3px rgb(148, 182, 161);
   border: solid;
@@ -389,8 +370,8 @@ h12{
   background-color:rgb(206, 216, 212);
   align-items: center;
   margin-bottom: 12px;
-
 }
+
 
 h13{
   font-size: 19px;
@@ -398,7 +379,6 @@ h13{
   color:rgb(66, 109, 91);
   font-weight: 400;
 }
-
 
 
 h14{
@@ -409,12 +389,14 @@ h14{
   color: rgb(156, 156, 156);
 }
 
+
 h15{
   font-size: 18px;
   font-family: 'EB Garamond', serif;
   text-decoration: none;
   font-style: none;
 }
+
 
 footer {
   font-size: 11px;
@@ -430,10 +412,12 @@ footer {
   padding-top: 4px;
 }
 
+
 footer a {
   text-decoration: none;
   color: #ffffff;
 }
+
 
 h9{
   font-size: 15px;
@@ -456,8 +440,6 @@ h8{
 }
 
 
-
-
 /* EDIT PAGE */
 .edit-fields{
   margin-top: 10px;
@@ -470,8 +452,6 @@ h8{
   border-radius:20px;
   border-color: rgb(199, 199, 199);
   border-width: 1px;
-
-
 }
 
 
@@ -484,6 +464,7 @@ h8{
   margin: 30px;
 }
 
+
 .profile-button{
   background-color: rgb(228, 228, 228);
   color: rgb(68, 68, 68);
@@ -494,14 +475,12 @@ h8{
   padding-right: 10px;
   margin: 10px;
   width: 220px;
-
 }
 
 
 .profile-button:hover{
   outline: solid;
   outline-color:rgb(132, 155, 145);
-
 }
 
 .profile-description{
@@ -510,6 +489,7 @@ h8{
   padding-left: 100px;
   padding-right: 100px;
 }
+
 
 .follow-button{
   background-color: rgb(179, 209, 196);
@@ -527,11 +507,11 @@ h8{
 }
 
 
-
 .follow-button:hover{
   background-color: rgb(255, 255, 255);
   color: rgb(66, 109, 91);
 }
+
 
 .following-profilepic{
   height: 60px;
@@ -545,6 +525,7 @@ h8{
   box-shadow: 10px 5px 10px rgb(172, 172, 172);
 }
 
+
 .following-box{
   text-align: left;
   padding-left: 60px;
@@ -552,14 +533,11 @@ h8{
 
 }
 
+
 .following-title-box{
   margin-top: 50px;
   border-bottom: solid 2px rgb(148, 182, 161);
-
 }
-
-
-
 
 
 /* FONT FOR FOLLOWERS AND FOLLOWING  */
@@ -575,7 +553,6 @@ h11{
   font-family: 'PT Serif', serif;
   font-size: 27px;
   color:rgb(0, 0, 0);
-
 }
 
 

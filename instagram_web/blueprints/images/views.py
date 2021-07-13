@@ -18,12 +18,11 @@ images_blueprint = Blueprint('images',
 @login_required
 def new():
     user = User.get_or_none(User.id == session['user_id'])
-    if user:
-        username = user.username
-    else:
-        username = None 
+    if not user:
+        
+        user = None 
 
-    return render_template('/images/new.html', username = username)
+    return render_template('/images/new.html', user = user)
 
 
 @images_blueprint.route('/', methods = ["POST"])
@@ -31,7 +30,7 @@ def new():
 def create():
     
     user = User.get_or_none(User.id == session['user_id'])
-    username = user.username
+
     story_image = request.files['story_image']
     story_description = request.form['story_description']
     story_title = request.form['story_title']
@@ -48,11 +47,11 @@ def create():
                 
         if new_image.save():
             flash("Story uploaded successfully!")
-            return redirect(url_for('images.new', username = username))
+            return redirect(url_for('images.new', user = user))
 
         else:
             flash("Story upload unsuccessful. Please try again.")
-            return redirect(url_for('images.new', username = usermame))
+            return redirect(url_for('images.new', user = user))
 
     return redirect('/new')
 
@@ -60,19 +59,12 @@ def create():
 @images_blueprint.route('/<id>/edit')
 @login_required
 def edit(id):
-
     story_to_edit = Image.get_or_none(Image.id == id)
-    story_title = story_to_edit.title
-    story_description = story_to_edit.description
-    story_user_id = story_to_edit.user_id
-    story_image_url = story_to_edit.image_url
 
-    if story_user_id == session.get('user_id'):
+    if story_to_edit.user_id == session.get('user_id'):
         user = User.get_or_none(User.id == session["user_id"])
-        username = user.username
-        return render_template ('/images/edit.html', id = id, story_title = story_title, 
-        story_description = story_description, story_user_id = story_user_id, 
-        story_image_url = story_image_url, username = username)
+
+        return render_template ('/images/edit.html', id = id,  story_to_edit = story_to_edit, user = user)
 
     else: 
         return redirect('/401.html')
@@ -80,7 +72,6 @@ def edit(id):
 @images_blueprint.route('/update/<id>/', methods = ["POST"])
 @login_required
 def update(id):
-    
     if session.get('user_id'):
         user = User.get_or_none(User.id == session["user_id"])
         username = user.username
@@ -135,23 +126,15 @@ def destroy(id):
     else:
         return redirect('/404.html')
 
-    if user:
-        username = user.username
-    else:
-        username = None
-    
     image_to_delete = Image.get_or_none(Image.id == id)
     image_user_id = image_to_delete.user_id
 
     if user.id == image_user_id:
-        show_username = user.username
-        show_profilepic = user.image_path
-        show_description = user.description
+        
         images = Image.select().where(Image.user_id == user.id)
-
         image_to_delete.delete_instance()
         flash ("Post deleted successfully!")
-        return redirect(url_for('users.show', username = username, show_profilepic = show_profilepic, show_username = username, images = images))
+        return redirect(url_for('users.show', user = user, show_user = user, show_username = user.username, images = images))
 
     else:
         return redirect('/404.html')

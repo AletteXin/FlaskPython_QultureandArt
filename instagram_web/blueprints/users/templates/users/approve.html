@@ -3,7 +3,6 @@
 {% block content %}
 
 
-
 <main>
 
     <div class="container ">
@@ -12,9 +11,7 @@
 
             <div class="col my-4">
 
-
                 <h8>Follower requests</h8>
-
 
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -61,14 +58,13 @@
                 {% endif %}
 
                 <div class="following-title-box">
-                    <h13>{{username}}'s Followers ({{length_sf}})</h13>
+                    <h13>{{current_user.username}}'s Followers ({{length_sf}})</h13>
                 </div>
                 <div class="container-fluid">
                     {% for value in user_followers %}
 
                     <div class="following-box">
-                        <a href="{{url_for('users.show', username=username, show_profilepic = value.image_path, show_username = value.username, 
-                                                                      show_description = value.description)}}">
+                        <a href="{{url_for('users.show', user=user, show_user = value, show_username = value.username)}}">
                             <img class="following-profilepic" src="{{value.image_path}}" />
 
                             <h16>{{value.username}}</h16>
@@ -79,17 +75,13 @@
                     {% endfor %}
                 </div>
 
-
             </div>
 
             <div class="col">
                 <img class="img-fluid" src="/static/images/edit-details.jpg" />
             </div>
 
-
-
         </div>
-
 
     </div>
 </main>
