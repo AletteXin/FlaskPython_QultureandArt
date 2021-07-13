@@ -15,6 +15,7 @@ QULTURE & ART
 
 
 {% for image in users_with_images %}
+{% if image.user.privacy == "1" %}
 
 <div class="container">
   <div class="row">
@@ -58,7 +59,7 @@ QULTURE & ART
 
 
 
-
+{% endif %}
 {% endfor %}
 
 <!-- <div class="navbar">

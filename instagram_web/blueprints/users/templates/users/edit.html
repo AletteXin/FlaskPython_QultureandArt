@@ -26,6 +26,40 @@
                 {% endif %}
                 {% endwith %}
 
+               
+
+                <div class="edit-fields">
+                    <form action="{{url_for('users.update', field = 'password')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <div>
+                            <label class="form-label" for="password">Password: </label>
+                            <input class="input-text" type="password" name="password"
+                                placeholder="1 lowercase, 1 uppercase and 1 of ?#$@!.">
+                        </div>
+                
+                        <div>
+                            <label class="form-label" for='reenter_password'>Reenter password: </label>
+                            <input class="input-text" type="password" name="reenter_password">
+                            <div>
+                                <input class="submit-button" type="submit" value="Update Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="edit-fields">
+                    <form action="{{url_for('users.update', field = 'username')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                
+                        <label class="form-label" for="username">Username: </label>
+                        <input class="input-text" type="text" name="username">
+                        <div>
+                            <input class="submit-button" type="submit" value="Update Username">
+                        </div>
+                    </form>
+                </div>
+
+
                 <div class="edit-fields">
                 
                     <form action="{{url_for('users.update', field = 'description')}}" method="POST">
@@ -52,36 +86,8 @@
                 </div>
 
 
-                <div class="edit-fields">
-                    <form action="{{url_for('users.update', field = 'username')}}" method="POST">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
-                        <label class="form-label" for="username">Username: </label>
-                        <input class="input-text" type="text" name="username">
-                        <div>
-                            <input class="submit-button" type="submit" value="Update Username">
-                        </div>
-                    </form>
-                </div>
-
-                <div class="edit-fields">
-                    <form action="{{url_for('users.update', field = 'password')}}" method="POST">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                        <div>
-                            <label class="form-label" for="password">Password: </label>
-                            <input class="input-text" type="password" name="password"
-                                placeholder="1 lowercase, 1 uppercase and 1 of ?#$@!.">
-                        </div>
-
-                        <div>
-                            <label class="form-label" for='reenter_password'>Reenter password: </label>
-                            <input class="input-text" type="password" name="reenter_password">
-                            <div>
-                            <input class="submit-button" type="submit" value="Update Password">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                
+               
 
                 <div class="edit-fields">
                     <form action="{{url_for('users.update', field = 'email')}}" method="POST">
@@ -93,7 +99,29 @@
                         </div>
                     </form>
                 </div>
+
+
+                <div class="edit-fields">
+                
+                    <form action="{{url_for('users.update', field = 'privacy')}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <label class="form-label" for="privacy">Privacy: </label>
+                        <input class="input-text" list="privacy" name="privacy">
+
+                        <datalist id="privacy">
+                            <option>Public</option>
+                            <option>Private</option>
+                        </datalist>
+
+                        <div>
+                            <input class="submit-button" type="submit" value="Update Privacy">
+                        </div>
+                    </form>
+                </div>
+
             </div>
+
+
 
             <div class="col">
                 <img class="img-fluid" src="/static/images/edit-details.jpg" />

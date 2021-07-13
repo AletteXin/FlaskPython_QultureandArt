@@ -43,6 +43,7 @@ def destroy(username):
     
     user = User.get_or_none(User.username == username)
     session['user_id'] = None
+    # User.get_or_none(User.email == "alettengxinling@gmail.com").delete_instance()
     logout_user()
     return redirect (url_for('home'))
 
@@ -61,20 +62,28 @@ def authorize():
 
     user = User.get_or_none(User.email == email)
     if user: 
+        user = User.get_or_none(User.email == email)
+        session['user_id'] = user.id
         login_user(user)
         username = user.username 
-        return redirect(url_for('home', username = username, show_username = username))
+        show_profilepic = user.image_path 
+        show_description = user.description 
+
+        return redirect(url_for('home', username = username, show_username = username, show_profilepic = show_profilepic, show_description = show_description))
+    
     else:
-        
-        new_user = User(name = email, username=email, password = "Qultureandart$$$", email = email, birth_date = "1990-01-01")
+        password = os.environ.get("password")
+        new_user = User(name = email, username=email, password = password, email = email, birth_date = "1990-01-01")
 
         if new_user.save():
-            user = User.get_or_none(User.username == email)
+            user = User.get_or_none(User.email == email)
             session['user_id'] = user.id
+            login_user(user)
+            username = user.username 
             show_profilepic = user.image_path
             show_description = user.description
-            login_user(user)
-            flash("Please update your password now.")
+            
+            flash("Please update your password and choose a username before proceeding onto other pages.")
             return redirect(url_for('users.edit', username = username, show_username = username, show_profilepic = show_profilepic, show_description = show_description))
         
         else:

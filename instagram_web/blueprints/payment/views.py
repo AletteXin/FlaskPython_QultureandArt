@@ -34,8 +34,9 @@ def new():
 @login_required
 def create():
     nonce = request.form["nonce"]
+    amount = request.form["amount"]
     gateway.transaction.sale({
-        "amount": "10.00",
+        "amount": amount,
         "payment_method_nonce": nonce,
         "options": {
             "submit_for_settlement": True

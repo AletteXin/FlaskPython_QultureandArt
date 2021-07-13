@@ -16,6 +16,7 @@ class User(UserMixin, BaseModel):
     birth_date = pw.DateField(null=False)
     image_path = pw.TextField(null=True, default="https://images.unsplash.com/photo-1604095288333-55f9bf7f8031?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80")
     description = pw.TextField(null=True, default="Tell your story.")
+    privacy = pw.CharField(default = 1)
 
 
     @hybrid_property

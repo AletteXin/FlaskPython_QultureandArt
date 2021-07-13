@@ -14,6 +14,7 @@ class Image(UserMixin, BaseModel):
     description = pw.CharField(null=False, max_length = 500)
     user = pw.ForeignKeyField(User, backref = "users")
     date_posted = pw.DateTimeField(default = datetime.datetime.now)
+    likes = pw.IntegerField(default = 0)
 
 
     @hybrid_property

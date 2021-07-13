@@ -64,8 +64,10 @@ def show(show_username):
             show_username = show_user.username
             show_profilepic = show_user.image_path
             show_description = show_user.description
+            show_privacy = show_user.privacy 
             images = Image.select().where(Image.user_id == show_user.id).order_by(Image.date_posted.desc())
-            return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, show_username = show_username, show_description = show_description, images = images)
+            return render_template('/users/profile.html', username = username, show_profilepic = show_profilepic, 
+            show_privacy = show_privacy, show_username = show_username, show_description = show_description, images = images)
 
         else:
             return redirect('/404.html')
@@ -88,7 +90,7 @@ def edit():
         username = user.username
     else:
         username = None 
-    return render_template("/users/edit.html", username = username )
+    return render_template("/users/edit.html", username = username, show_username = username )
 
 
 @users_blueprint.route('/update/<field>', methods=['POST'])
@@ -117,6 +119,12 @@ def update(field):
                 if new_info != reenter_password:
                     flash("Passwords do not match. Please reenter details.")
                     return redirect (url_for('users.edit'))
+
+            if field == "privacy":
+                if new_info == "Public":
+                    new_info = "1"
+                else:
+                    new_info = "0"
 
             setattr(user, field, new_info)
             user.save()

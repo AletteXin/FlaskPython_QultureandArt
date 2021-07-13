@@ -21,6 +21,8 @@
                     <div class="profile-description">
                         <h9>"{{show_description}}"</h9>
                     </div>
+                    
+                    
                     {% if current_user.username == show_username %}
 
 
@@ -56,7 +58,7 @@
                 {% endif %}
                 {% endwith %}
 
-
+                {% if show_privacy == "1" or show_username == current_user.username %}
                 {% for value in images %}
 
                 <div class="container-fluid">
@@ -117,6 +119,17 @@
 
                         </div>
                         {% endfor %}
+                        {% else %}
+
+                        <h7>Private user. Please request for permission. </h7>
+
+
+
+                        {% endif %}
+
+
+
+
 
                     </div>
                 </div>

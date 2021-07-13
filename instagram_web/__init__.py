@@ -63,13 +63,23 @@ def home():
         user = User.get_or_none(User.id == session["user_id"])
         if user:
             username = user.username
+            show_username = user.username 
+            show_description = user.description
+            show_profilepic = user.image_path 
+            show_privacy = user.privacy 
+
     else:
         username = None
+        show_username = None
+        show_description = None
+        show_profilepic = None 
+        show_privacy = None
 
     users = User.select()
     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
-    return render_template('home.html', username=username, users_with_images=users_with_images)
+    return render_template('home.html', username = username, show_username = show_username, 
+    show_privacy = show_privacy, show_description = show_description, show_profilepic = show_profilepic, users_with_images = users_with_images)
 
 
     # users = User.select()
