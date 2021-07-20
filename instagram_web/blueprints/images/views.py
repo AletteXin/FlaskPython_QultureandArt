@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 from instagram_web.util.helpers import upload_file_to_s3
 from models.images import Image
 from peewee import prefetch 
+from models.likes import Likes
+
 
 images_blueprint = Blueprint('images',
                             __name__,
@@ -108,9 +110,11 @@ def update(id):
     else:
         return redirect('/404.html')
 
+
 @images_blueprint.route('/<id>')
 def show():
     pass
+
 
 @images_blueprint.route('/')
 def index():
@@ -135,6 +139,42 @@ def destroy(id):
         image_to_delete.delete_instance()
         flash ("Post deleted successfully!")
         return redirect(url_for('users.show', user = user, show_user = user, show_username = user.username, images = images))
+
+    else:
+        return redirect('/404.html')
+
+
+@images_blueprint.route('/<id>/like')
+@login_required
+def like(id):
+    
+    user = User.get_or_none(User.id == session['user_id'])
+    liker = user
+    image = Image.get_or_none(Image.id == id)
+    like_record = Likes.select().where(Likes.liker == liker, Likes.image == image)
+    show_user = User.get_or_none(User.id == image.user_id)
+    show_username = show_user.username
+
+
+    if like_record:
+        record_to_delete = Likes.get_or_none(Likes.liker == liker, Likes.image == image)
+        record_to_delete.delete_instance()
+        image_likes = Likes.select().where(Likes.image == id)
+        length_likes = image_likes.count()
+        image.likes = length_likes 
+        image.save()
+        # return redirect(url_for('users.show', user = user, show_user = show_user, 
+        # show_username = show_username, length_likes = length_likes))
+        return redirect(request.referrer)
+    
+    elif Likes.create(liker = liker, image = image):
+        image_likes = Likes.select().where(Likes.image == id)
+        length_likes = image_likes.count()
+        image.likes = length_likes 
+        image.save()
+        # return redirect(url_for('users.show', user = user, show_user = show_user, 
+        # show_username = show_username, length_likes = length_likes))
+        return redirect(request.referrer)
 
     else:
         return redirect('/404.html')

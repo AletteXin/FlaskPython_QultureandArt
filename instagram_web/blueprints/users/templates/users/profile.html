@@ -6,7 +6,6 @@
 
     <div class="container-fluid  my-4 ">
         <div class="row align-items-start">
-
             <div class="col-4">
                 <div class="profile-background">
                     <div>
@@ -41,19 +40,18 @@
                     <div class="following-title-box">
                         <h13>Following ({{length_si}}) </h13>
                     </div>
+
                     <div class="container-fluid">
+
                         {% for value in show_idols %}
 
                         <div class="following-box">
                             <a
                                 href="{{url_for('users.show', user=user, show_user = value, show_username = value.username)}}">
                                 <img class="following-profilepic" src="{{value.image_path}}" />
-
                                 <h16>{{value.username}}</h16>
                             </a>
-
                         </div>
-
                         {% endfor %}
                     </div>
 
@@ -78,44 +76,12 @@
 
                                 <h16>{{value.username}}</h16>
                             </a>
-
                         </div>
-
                         {% endfor %}
                     </div>
 
 
-
-                    {% elif approval_record.approved == "1" %}
-
-                    <form
-                        action="{{url_for('users.follow', show_user = show_user, show_username = show_user.username)}}">
-                        <div>
-                            <input class="follow-button" type="submit" value="Stop following">
-                        </div>
-                    </form>
-
-                    {% for value in idols %}
-
-                    <div class="following-box">
-                        <img class="following-profilepic" src="{{value.image_path}}" />
-                        <h16>{{value.username}}</h16>
-
-                    </div>
-
-                    {% endfor %}
-
-                    {% for value in idols %}
-
-                    <div class="following-box">
-                        <img class="following-profilepic" src="{{value.image_path}}" />
-                        <h16>{{value.username}}</h16>
-
-                    </div>
-
-                    {% endfor %}
-
-                    {% elif already_following == True %}
+                    {% elif approval_record %}
 
                     <form
                         action="{{url_for('users.follow', show_user = show_user, show_username = show_user.username)}}">
@@ -153,7 +119,6 @@
                     {% endif %}
                     {% endwith %}
 
-
                     {% if show_user.privacy == "1" or show_user.username == current_user.username or
                     (approval_record.approved == "1") %}
                     {% for value in images %}
@@ -190,24 +155,32 @@
 
                                 {% endif %}
 
-                                <button class="like-donate-button"><i class="fas fa-heart fa-lg"></i></button>
+                                {% if value in user_liked %}
+                                <form action="{{url_for('images.like', id = value.id)}}">
+                                    <button class="like-donate-button-red" type=submit><i
+                                            class="fas fa-heart fa-lg"></i></button>
+                                </form>
+                                <button class="donate_like_number">{{value.likes}}</button>
+                                
+                                {% else %}
+                                <form action="{{url_for('images.like', id = value.id)}}">
+                                    <button class="like-donate-button" type=submit><i class="fas fa-heart fa-lg"></i></button>
+                                </form>
+                                <button class="donate_like_number">{{value.likes}}</button>
 
-                                <form action="{{url_for('payment.new')}}">
+                                {% endif %}
+
+                                <form action="{{url_for('payment.new', id = value.id)}}">
                                     <button class="like-donate-button" type=submit><i
                                             class="fas fa-hand-holding-usd fa-lg"></i></button>
                                 </form>
-
+                                <button class="donate_like_number">US${{value.donation}}</button>
                             </div>
-
                         </div>
                         <div class="col-4">
                             <img class="home-postpic" src="{{value.image_url}}" />
-
                         </div>
-
-
                         <div class="home-line">
-
                         </div>
 
                         {% endfor %}
@@ -220,18 +193,10 @@
 
                     {% endif %}
 
-
                 </div>
             </div>
         </div>
-
     </div>
-
-    <div class="col">
-
-    </div>
-
-
 </main>
 
 

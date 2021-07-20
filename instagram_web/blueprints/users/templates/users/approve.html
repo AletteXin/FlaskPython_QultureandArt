@@ -6,9 +6,7 @@
 <main>
 
     <div class="container ">
-
         <div class="row align-items-start ">
-
             <div class="col my-4">
 
                 <h8>Follower requests</h8>
@@ -66,23 +64,18 @@
                     <div class="following-box">
                         <a href="{{url_for('users.show', user=user, show_user = value, show_username = value.username)}}">
                             <img class="following-profilepic" src="{{value.image_path}}" />
-
                             <h16>{{value.username}}</h16>
                         </a>
-
                     </div>
 
                     {% endfor %}
                 </div>
-
             </div>
 
             <div class="col">
                 <img class="img-fluid" src="/static/images/edit-details.jpg" />
             </div>
-
         </div>
-
     </div>
 </main>
 

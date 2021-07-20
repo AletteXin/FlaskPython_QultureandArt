@@ -4,12 +4,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from models.user import User 
 import re
-from flask_login import login_user, login_required
+from flask_login import login_user, login_required, current_user
 from instagram_web.util.helpers import upload_file_to_s3
 from app import *
 from models.images import Image
 from peewee import prefetch 
 from models.follow import Follow
+from models.likes import Likes
 
 
 users_blueprint = Blueprint('users',
@@ -29,12 +30,12 @@ def create():
     password = request.form['password']
     reenter_password = request.form['reenter_password']
     email = request.form['email']
-    birth_date = request.form['birth_date']
+    # birth_date = request.form['birth_date']
 
     if password != reenter_password:
         flash("Passwords do not match. Please reenter details.")
 
-    new_user = User(name = name, username=username, password = password, email = email, birth_date = birth_date)
+    new_user = User(name = name, username=username, password = password, email = email)
 
     if new_user.save():
         user = User.get_or_none(User.username == username)
@@ -63,15 +64,11 @@ def show(show_username):
         approval_record = Follow.get_or_none(Follow.follower == user, Follow.idol == show_user)
         show_idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == show_user.id, Follow.approved == "1")
         length_si = show_idols.count()
+        user_liked = Image.select().join(Likes, on = Likes.liker_id == user.id).where(Likes.image_id == Image.id)
 
-        if approval_record:
-            already_following = True 
-        else: 
-            already_following = False
 
-        return render_template('/users/profile.html', show_user = show_user, 
-        already_following = already_following, approval_record = approval_record, images = images, 
-        show_idols = show_idols,  length_si = length_si)
+        return render_template('/users/profile.html', show_user = show_user, approval_record = approval_record, images = images, 
+        show_idols = show_idols,  length_si = length_si, user_liked = user_liked)
 
         
     else:
@@ -97,7 +94,7 @@ def edit():
 def update(field):
     # if session.get('user_id'):
     #     user = User.get_or_none(User.id == session['user_id'])
-    if user:
+    if current_user:
         new_info = request.form[field]
             
         if field == "email":
@@ -236,8 +233,10 @@ def approve_done(follow_id):
     decision = request.form['decision']
 
     if decision == "Yes":
-        setattr(record, "approved", "1")
+        record.approved = "1"
         record.save()
+        # setattr(record, "approved", "1")
+        # record.save()
     
     else: 
         record.delete_instance()

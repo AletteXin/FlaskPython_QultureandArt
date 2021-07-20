@@ -6,11 +6,8 @@
 <main>
 
     <div class="container ">
-
         <div class="row align-items-start">
-
             <div class="col my-4">
-
                     <h8>Make changes to your details</h8>
 
                 {% with messages = get_flashed_messages() %}
@@ -29,7 +26,7 @@
                         <div>
                             <label class="form-label" for="password">Password: </label>
                             <input class="input-text" type="password" name="password"
-                                placeholder="1 lowercase, 1 uppercase and 1 of ?#$@!.">
+                                placeholder="At least 1 lowercase, uppercase and special character">
                         </div>
                 
                         <div>
@@ -67,7 +64,6 @@
                     </form>
                 </div>
 
-
                 <div class="edit-fields">
 
                     <form action="{{url_for('users.update', field = 'name')}}" method="POST">
@@ -80,7 +76,6 @@
                     </form>
                 </div>
 
-
                 <div class="edit-fields">
                     <form action="{{url_for('users.update', field = 'email')}}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -92,33 +87,27 @@
                     </form>
                 </div>
 
-
                 <div class="edit-fields">
                 
                     <form action="{{url_for('users.update', field = 'privacy')}}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <label class="form-label" for="privacy">Privacy: </label>
                         <input class="input-text" list="privacy" name="privacy">
-
                         <datalist id="privacy">
                             <option>Public</option>
                             <option>Private</option>
                         </datalist>
-
                         <div>
                             <input class="submit-button" type="submit" value="Update Privacy">
                         </div>
                     </form>
                 </div>
-
             </div>
 
             <div class="col">
                 <img class="img-fluid" src="/static/images/edit-details.jpg" />
             </div>
-
         </div>
-
     </div>
 </main>
 

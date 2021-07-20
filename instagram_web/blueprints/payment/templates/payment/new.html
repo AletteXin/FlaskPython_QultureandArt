@@ -2,32 +2,37 @@
 
 {% block content %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul class=flashes>
-    {% for message in messages %}
-    <p class="flash-words">{{ message }} </p>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
+
 
 <main>
-    <div class=container-fluid>
+    <div class="container-fluid px-5 py-3">
+        <h8>Contribute to the preservation of our culture today</h8>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <p class="flash-words">{{ message }} </p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         
-        <form method="POST" action="{{url_for('payment.create')}}" id = "paymentform">
+        <form method="POST" action="{{url_for('payment.create', id = id)}}" id="paymentform">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <label>Enter donation amount: </label>
-            <input type="text" name="amount" placeholder="US$ amount">
             <div id="payment"></div>
             <input type="hidden" name="nonce" id="nonce-field">
-            <input type="submit" value="Make donation now" id = "submit-button">
+            <label class="form-label">Enter donation amount: </label>
+            <input class="input-text" type="text" name="amount" placeholder="US$ amount">
+            <div>
+            <input class="submit-button" type="submit" value="Make donation now" id="submit-button">
+            </div>
         </form>
     </div>
 
     <script type="text/javascript">
         const braintreeButton = document.getElementById("submit-button")
-        
+
         braintree.dropin.create({
             container: document.getElementById("payment"),
             authorization: "{{token}}"
@@ -35,13 +40,12 @@
             braintreeButton.onclick = () => {
                 paymentForm.requestPaymentMethod((error, payload) => {
                     document.getElementById("nonce-field").value = payload.nonce
-                    document.getElementById("paymentform").submit()
+                    // document.getElementById("paymentform").submit()
                 })
             }
         })
 
     </script>
-
 </main>
 
 {% endblock %}

@@ -18,22 +18,20 @@ payment_blueprint = Blueprint('payment',
                             template_folder='templates')
 
 
-@payment_blueprint.route('/new', methods=['GET'])
+@payment_blueprint.route('/new/<id>', methods=['GET'])
 @login_required
-def new():
+def new(id):
     token = gateway.client_token.generate()
     print(token)
-    user_id = session['user_id'] 
-    user = User.get_or_none(User.id == user_id)
 
-    return render_template('/payment/new.html', token = token, user = user)
+    return render_template('/payment/new.html', token = token, id = id)
 
 
-@payment_blueprint.route('/create', methods=['POST'])
+@payment_blueprint.route('/create/<id>', methods=['POST'])
 @login_required
-def create():
+def create(id):
     nonce = request.form["nonce"]
-    amount = request.form["amount"]
+    amount = int(request.form["amount"])
     gateway.transaction.sale({
         "amount": amount,
         "payment_method_nonce": nonce,
@@ -42,5 +40,11 @@ def create():
         }
     })
 
-    flash ("Thank you for your generous donation!")
-    return redirect(url_for('payment.new'))
+    image_donated = Image.get_or_none(Image.id == id)
+    existing_donation = image_donated.donation
+    new_donation = existing_donation + amount 
+    image_donated.donation = new_donation 
+    image_donated.save()
+
+    flash ("Thank you for your generous contribution!")
+    return redirect(url_for('payment.new', id = id))

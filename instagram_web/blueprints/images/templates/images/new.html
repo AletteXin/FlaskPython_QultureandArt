@@ -4,16 +4,12 @@
 
 
 <main>
-
     <div class="container-fluid">
         <div class="row align-items-center ">
-
             <div class="col" class="center">
                 <img class="img-fluid" src="/static/images/new-story.jpg" />
             </div>
-
             <div class="col my-4" class="center">
-
                 <h8>Post a new story </h8>
 
                 {% with messages = get_flashed_messages() %}
@@ -36,12 +32,10 @@
                             <input class="input-text" type="text" name="story_title">
                         </div>
 
-
                         <div class="padding-left-align">
                             <label class="form-label" for="story_image">Photo</label>
                             <input type="file" name="story_image">
                         </div>
-
 
                         <div class="padding-left-align">
                             <label class="form-label" for="story_description">Description</label>
@@ -59,7 +53,3 @@
 
 {% endblock %}
 
-<!-- put a form here  -->
-
-<!-- 
-and then in views.py need to put in the function  -->

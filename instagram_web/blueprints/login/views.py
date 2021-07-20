@@ -7,6 +7,8 @@ from app import *
 from flask_login import login_user, LoginManager, logout_user, login_required
 from models.images import Image
 from instagram_web.util.google_oauth import oauth
+import random 
+import string 
 
 
 login_blueprint = Blueprint('login',
@@ -27,7 +29,6 @@ def create():
     user = User.get_or_none(User.username == username)
     if user and check_password_hash(user.password_hash, password):
         session['user_id'] = user.id
-        show_profilepic = user.image_path
         images = Image.select().where(Image.user_id == user.id)
         login_user(user)
         return redirect(url_for('users.show', user = user, show_user = user, show_username = username, images = images))
@@ -42,6 +43,7 @@ def destroy(username):
     
     user = User.get_or_none(User.username == username)
     session['user_id'] = None
+    # User.get_or_none(User.email == 'alettengxinling@gmail.com').delete_instance()
     logout_user()
     return redirect (url_for('home'))
 
@@ -54,7 +56,8 @@ def google_login():
 @login_blueprint.route("/authorize/google")
 def authorize():
     oauth.google.authorize_access_token()
-    email = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()['email']
+    google_info = oauth.google.get('https://www.googleapis.com/oauth2/v2/userinfo').json()
+    email = google_info['email']
 
     user = User.get_or_none(User.email == email)
     if user: 
@@ -65,8 +68,9 @@ def authorize():
         return redirect(url_for('home', user = user, show_user = user))
     
     else:
-        password = os.environ.get("password")
-        new_user = User(name = email, username=email, password = password, email = email, birth_date = "1990-01-01")
+        characters = string.ascii_letters + string.digits + string.punctuation
+        password = ''.join(random.choice(characters) for i in range(10))
+        new_user = User(name = email, username = email, password = password, email = email)
 
         if new_user.save():
             user = User.get_or_none(User.email == email)
@@ -78,3 +82,4 @@ def authorize():
         
         else:
             return redirect('/users/new')
+

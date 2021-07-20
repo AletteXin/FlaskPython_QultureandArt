@@ -3,11 +3,8 @@
 {% block content %}
 
 <main>
-
     <div class="container">
-
         <div class="row align-items-center">
-
             <div class="col">
 
                 <h8>Edit post</h8>
@@ -29,7 +26,8 @@
                         <div>
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                             <label class="form-label" for="new_title">Title: </label>
-                            <input class="input-text" type="text" name="new_title" value="{% print(story_to_edit.title) %}">
+                            <input class="input-text" type="text" name="new_title"
+                                value="{% print(story_to_edit.title) %}">
                         </div>
                         <div>
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -46,22 +44,13 @@
                             <input class="submit-button" type="submit" value="Update post">
                         </div>
 
-
                     </form>
                 </div>
-
-
             </div>
-
             <div class="col">
                 <img class="img-fluid" src="{% print(story_to_edit.image_url) %}" />
             </div>
-
-
-
         </div>
-
-
     </div>
 </main>
 

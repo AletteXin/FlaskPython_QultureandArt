@@ -40,9 +40,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
 
 
-
-
-
   {% endassets %}
 
   {% assets "home_js" %}
@@ -62,14 +59,12 @@
 </head>
 
 
-
 <body>
 
   <header>
     <div class="container-fluid">
       <div class="row ">
         <div class="col-4">
-
         </div>
         <div class="col-4 ">
           <h7>QULTURE & ART</h7>
@@ -89,27 +84,20 @@
   {% if current_user.is_authenticated %}
 
   <div class="navbar-user">
-
     <div class="navbar-user-cont">
-
-
       <form action="{{url_for('users.show', show_user = current_user, show_username = current_user.username)}}">
-
         <div>
           <input class="navbar-username" type="submit" value="{{current_user.username}}'s gallery">
         </div>
       </form>
-
       <form action="{{url_for('images.new')}}">
         <div>
           <input class="nav-button" type="submit" value="Share a new story">
         </div>
       </form>
-
     </div>
 
     <div class="navbar-user-cont">
-
       <form action="{{url_for('home')}}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <div>
@@ -126,7 +114,6 @@
     </div>
   </div>
 
-  </div>
 
   {% else %}
 
@@ -163,6 +150,26 @@
 
     {% endblock %}
 
+    <button onclick="topFunction()" id="topBtn" title="Go to top">Back to top</button>
+
+    <script type="text/javascript">
+      mybutton = document.getElementById("topBtn");
+
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+      function topFunction() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+      }
+    </script>
+
   </main>
 
   <footer>
@@ -170,8 +177,5 @@
   </footer>
 
 </body>
-
-
-
 
 </html>

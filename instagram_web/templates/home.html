@@ -46,15 +46,32 @@ QULTURE & ART
           </div>
         </div>
         <div class="like-donate-box">
-          <button class="like-donate-button"><i class="fas fa-heart fa-lg"></i></button>
-          <form action="{{url_for('payment.new')}}">
+
+          {% if image in user_liked %}
+
+          <form action="{{url_for('images.like', id = image.id)}}">
+            <button class="like-donate-button-red" type=submit><i class="fas fa-heart fa-lg"></i></button>
+          </form>
+          <button class="donate_like_number">{{image.likes}}</button>
+
+          {% else %}
+
+          <form action="{{url_for('images.like', id = image.id)}}">
+            <button class="like-donate-button" type=submit><i class="fas fa-heart fa-lg"></i></button>
+          </form>
+          <button class="donate_like_number">{{image.likes}}</button>
+
+          {% endif %}
+
+          <form action="{{url_for('payment.new', id = image.id)}}">
             <button class="like-donate-button" type=submit><i class="fas fa-hand-holding-usd fa-lg"></i></button>
           </form>
+          <button class="donate_like_number">US${{image.donation}}</button>
         </div>
       </div>
     </div>
     <div class="col-3">
-      <a href="{{url_for('payment.new')}}"><img class="home-postpic" src="{{image.image_url}}" /></a>
+      <img class="home-postpic" src="{{image.image_url}}" />
     </div>
     <div class="home-line">
 

@@ -5,11 +5,11 @@ from models.base_model import BaseModel
 from models.images import Image
 from models.user import User 
 
-db = PostgresqlExtDatabase('user_like_db')
+# db = PostgresqlExtDatabase('user_like_db')
 
 
-class UserImage(BaseModel, UserMixin):
+class Likes(BaseModel, UserMixin):
 
-    user = pw.ForeignKeyField(User)
     image = pw.ForeignKeyField(Image)
+    liker = pw.ForeignKeyField(User)
 

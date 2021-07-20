@@ -17,6 +17,30 @@ a:hover {
   color:rgb(87, 141, 119);
 }
 
+
+#topBtn {
+  /* display: none; Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 40px; /* Place the button at the bottom of the page */
+  right: 15px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgb(206, 216, 212);/* Set a background color */
+  color: rgb(0, 0, 0); /* Text color */
+  /* cursor: pointer; Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 50%; /* Rounded corners */
+  font-size: 15px; /* Increase font size */
+  font-family: 'Open Sans Condensed', sans-serif;
+  box-shadow: 10px 5px 10px rgb(185, 185, 185);
+}
+
+#topBtn:hover {
+  background-color:rgb(66, 109, 91); /* Add a dark-grey background on hover */
+  color: white;
+}
+
 .flash-words{
   color: rgb(128, 38, 38);
   font-family: 'Open Sans Condensed', sans-serif;
@@ -364,6 +388,16 @@ h12{
   outline: none;
 }
 
+.like-donate-button-red{
+  width: 50px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: rgb(126, 0, 0);
+}
+
 .home-line{
   height: 2px;
   width: 90vw;
@@ -372,6 +406,16 @@ h12{
   margin-bottom: 12px;
 }
 
+.donate_like_number{
+  width: 70px; 
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(148, 182, 161);
+  font-family: 'Open Sans Condensed', sans-serif;
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(66, 109, 91);
+}
 
 h13{
   font-size: 19px;
@@ -538,6 +582,9 @@ h8{
   margin-top: 50px;
   border-bottom: solid 2px rgb(148, 182, 161);
 }
+
+
+
 
 
 /* FONT FOR FOLLOWERS AND FOLLOWING  */

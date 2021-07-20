@@ -13,8 +13,7 @@ class User(UserMixin, BaseModel):
     password = None
     password_hash = pw.CharField()
     email = pw.CharField(null=False)
-    birth_date = pw.DateField(null=False)
-    image_path = pw.TextField(null=True, default="https://images.unsplash.com/photo-1604095288333-55f9bf7f8031?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80")
+    image_path = pw.TextField(null=True, default="https://images.unsplash.com/photo-1578320339911-5e7974b2720a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1536&q=80")
     description = pw.TextField(null=True, default="Tell your story.")
     privacy = pw.CharField(default = 1) #1 means user is public; 0 is private 
 
@@ -40,7 +39,7 @@ class User(UserMixin, BaseModel):
         
             has_lowercase = re.search("[a-z]", self.password)
             has_uppercase = re.search("[A-Z]", self.password)
-            has_special_char = re.search("[ \[ \] \# \$ \% \@ \* \< \&]", self.password)
+            has_special_char = re.search("[ \! \" \# \$ \% \& \' \( \) \* \+ \, \- \. \/ \: \; \< \= \> \? \@ \[ \] \\ \^ \_ \` \{ \} \| \~ ]", self.password)
 
             if has_lowercase and has_uppercase and has_special_char:
                 self.password_hash = generate_password_hash(self.password)
