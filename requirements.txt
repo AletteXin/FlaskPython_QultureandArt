@@ -26,7 +26,7 @@ jsmin==2.2.2
 MarkupSafe==1.1.0
 peewee==3.8.2
 peewee-db-evolve==3.7.3
-psycopg2-binary==2.7.7
+psycopg2-binary==2.9.1
 pycodestyle==2.5.0
 pycparser==2.20
 PyJWT==2.1.0
