@@ -1,4 +1,4 @@
--sycopg2-binary==2.9.1
+
 alabaster==0.7.12
 anaconda-clean==1.0
 anaconda-client==1.7.2
