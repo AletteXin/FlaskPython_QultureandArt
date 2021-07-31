@@ -157,4 +157,3 @@ Remove `certifi==2018.11.29` if you're having trouble installing dependencies.
 
 ---
 
-You may find more information about NEXT Academy's bootcamp at https://www.nextacademy.com
