@@ -1,6 +1,6 @@
 # Overview 
 
-Qulture & Art was coded as part of the NEXT Academy Full Stack Web Development Bootcamp. Known as the Flask Nextagram project, the project includes coding frontend and backend features of user generated content websites. 
+Qulture & Art was coded as part of the NEXT Academy Full Stack Web Development Bootcamp. Known as the Flask Nextagram project, the project includes coding frontend and backend features of user generated content websites. Live demo: https://infinite-cliffs-09410.herokuapp.com/
 
 # Flask Nextagram Template
 
