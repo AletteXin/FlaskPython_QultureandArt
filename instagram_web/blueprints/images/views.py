@@ -86,13 +86,21 @@ def update(id):
         story_image_url = image_to_edit.image_url
         new_title = request.form['new_title']
         new_description = request.form['new_description']
-        file = request.files["new_image"]
-
-        if file.filename == "":
-            image_path = story_image_url
-        else:
+        
+        
+        try: 
+            file = request.files['new_image']
             file.filename = secure_filename(file.filename)
             image_path = upload_file_to_s3(file, app.config["S3_BUCKET"])
+
+        except KeyError:
+            image_path = story_image_url
+
+        # if file.filename == "":
+        #     image_path = story_image_url
+        # else:
+        #     file.filename = secure_filename(file.filename)
+        #     image_path = upload_file_to_s3(file, app.config["S3_BUCKET"])
         
         if new_description == "":
             new_description = story_description 

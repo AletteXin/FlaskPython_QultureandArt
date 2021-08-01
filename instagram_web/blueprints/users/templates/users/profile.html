@@ -177,28 +177,28 @@
                                 </form>
                                 <button class="donate_like_number">US${{value.donation}}</button>
                             </div>
-
-                            <div class="col-4">
-                                <img class="home-postpic" src="{{value.image_url}}" />
-                            </div>
                         </div>
-
-                        <div class="home-line">
+                        <div class="col-4">
+                            <img class="home-postpic" src="{{value.image_url}}" />
                         </div>
-
-                        {% endfor %}
-
-                        {% else %}
-
-                        <h7>Private user. Please request for permission. </h7>
-
                     </div>
 
-                    {% endif %}
+                    <div class="home-line">
+                    </div>
+
+                    {% endfor %}
+
+                    {% else %}
+
+                    <h7>Private user. Please request for permission. </h7>
 
                 </div>
+
+                {% endif %}
+
             </div>
         </div>
+    </div>
     </div>
 </main>
 
