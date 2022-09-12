@@ -1,14 +1,12 @@
 # Overview 
 
-Qulture & Art was coded as part of the NEXT Academy Full Stack Web Development Bootcamp. Known as the Flask Nextagram project, the project includes coding frontend and backend features of user generated content websites. Live demo: https://infinite-cliffs-09410.herokuapp.com/
+Qulture & Art is a user-generated platform designed and coded in Flask-Python by AletteXin. Includes implementation of OAuth, payment gateway, and a backend server. Live demo: https://infinite-cliffs-09410.herokuapp.com/
 
-# Flask Nextagram Template
+# Flask Template
 
 version 0.0.1 (alpha)
 
 ## Development
-
-**Make a fork before cloning**
 
 **Install dependencies**
 
@@ -35,63 +33,6 @@ If you're having trouble starting flask
 
 - Restart your terminal as well and reactivate conda source
 
-**Create a `.env` file at the root of the directory**
-
-This project uses `python-dotenv`. When running commands using `flask`, environment variables from `.env` are automatically loaded.
-
-When executing `python` scripts directly e.g. `python start.py`, environment variables are not loaded and will not work except `python migrate.py` _(read the script - `migrate.py` to know why it would load the environment variables `.env`)_
-
-Minimum environment variables that needs to be set
-
-```
-FLASK_APP='start' # based on the name of our entry point script
-FLASK_ENV='development' # use this in development, otherwise 'production' or 'test'
-DATABASE_URL="postgres://localhost:5432/nextagram_dev"
-SECRET_KEY= #generate your own key
-```
-
-Use `os.urandom(32)` to generate a random secret key and paste that in `.env`. It's important to keep this `SECRET_KEY` private.
-
-Since this app uses Pooled Connections, you may also want to set:
-
-```
-DB_TIMEOUT=300 # 5 minutes
-DB_POOL=5
-```
-
-_(see `database.py`)_
-
-**Create a Database**
-
-- this application is configured to use Postgresql
-
-```
-createdb nextagram_dev
-```
-
-_\*if you name your database something else, tweak the settings in `.env`_
-
-**Ignoring Files from Git**
-
-Before git commiting, remember to ignore key files. Here's an example of `.gitignore`
-
-```
-.vscode
-*.DS_Store
-*__pycache__
-*.env
-```
-
----
-
-## Database Migrations
-
-```
-python migrate.py
-```
-
-\*_this template is configured to use Peewee's PooledConnection, however, migrations using Peewee-DB-Evolve doesn't work well. A hack was used to not use PooledConnection when running migration. Pending investigation. There are no known side effects to run this template in production._
-
 ## Starting Server
 
 ```
@@ -103,24 +44,6 @@ flask run
 ```
 flask shell
 ```
-
----
-
-## Deploying to Production
-
-- ensure environment variables are configured appropriately
-- migrations will not run in interactive mode when FLASK_ENV is set to 'production'
-- It's important to set your own `SECRET_KEY` environment variable and keep that private.
-
----
-
-## Architecture
-
-This template separates out API and Web to separate packages. Both API and Web are configured to use Flask's Blueprints.
-
-All new models should go into it's own file/script within the models directory.
-
-The entry point for a Flask server to start is located at `start.py`
 
 ---
 
