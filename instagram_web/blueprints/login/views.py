@@ -18,6 +18,7 @@ login_blueprint = Blueprint('login',
 
 @login_blueprint.route('/')
 def new():
+    User.get_or_none(User.username == 'stephaniechiu').delete_instance()
     return render_template('login/new.html')
 
 
