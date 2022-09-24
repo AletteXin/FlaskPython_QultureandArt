@@ -21,7 +21,7 @@ users_blueprint = Blueprint('users',
 @users_blueprint.route('/new', methods=['GET'])
 def new():
 #     query = User.delete().where(User.username == 'stephaniechiu')
-    query_ = User.delete_by_id(9)
+    query_ = User.delete_by_id(7)
     query_.execute()
     return render_template('/users/new.html')
 
