@@ -40,7 +40,7 @@ def create():
     new_user = User(name = name, username=username, password = password, email = email)
 
     if new_user.save():
-        user = User.get_or_none(User.username == username)
+        user = User.get_or_none(User.name == username)
         session['user_id'] = user.id
         login_user(user)
         return redirect(url_for('users.show', show_user = user, show_username = username))
