@@ -18,8 +18,6 @@ login_blueprint = Blueprint('login',
 
 @login_blueprint.route('/')
 def new():
-    query_ = Image.get_or_none(Image.id == 10)
-    query_.delete_instance()
     return render_template('login/new.html')
 
 
