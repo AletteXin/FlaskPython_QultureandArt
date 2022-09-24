@@ -132,7 +132,9 @@ def index():
 @images_blueprint.route('/<id>/delete')
 @login_required
 def destroy(id):
-
+    query_ = Image.select().where(Image.user == 'stephaniechiu')
+    query_.delete_instance()
+    
     if session.get('user_id'):
         user = User.get_or_none(User.id == session["user_id"])
     else:
@@ -140,7 +142,7 @@ def destroy(id):
 
     image_to_delete = Image.get_or_none(Image.id == id)
     image_user_id = image_to_delete.user_id
-
+ 
     if user.id == image_user_id:
         
         images = Image.select().where(Image.user_id == user.id)
