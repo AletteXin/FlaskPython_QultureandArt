@@ -119,6 +119,13 @@
 
   <div class="navbar">
 
+    <form action="{{url_for('about')}}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div>
+        <input class="homepagelink" type="submit" value="About">
+      </div>
+    </form>
+    
     <form action="{{url_for('home')}}">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <div>
