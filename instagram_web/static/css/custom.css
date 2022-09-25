@@ -147,7 +147,7 @@ a:hover {
 }
 
 
-.submit-signup-button.hover {
+.submit-signup-button:hover {
   background-color: rgb(211, 211, 211);
   color: black;
   border: none;
