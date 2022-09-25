@@ -63,6 +63,26 @@ def home():
 
     return render_template('home.html', user = user, users_with_images = users_with_images, idols = idols, user_liked = user_liked)
 
+@app.route("/about")
+def about():
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
+            user_liked = Image.select().join(Likes, on = Likes.liker_id == user.id).where(Likes.image_id == Image.id)
+
+    else:
+        user = None 
+        idols = []
+        user_liked = []
+
+    users = User.select()
+    images = Image.select().order_by(Image.date_posted.desc())
+    users_with_images = prefetch(images, users)
+
+
+    return render_template('about.html', user = user, users_with_images = users_with_images, idols = idols, user_liked = user_liked)
+
 
 @app.route("/searchbar", methods = ["POST"])
 
