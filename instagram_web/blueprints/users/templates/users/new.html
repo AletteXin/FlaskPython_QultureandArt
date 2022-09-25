@@ -14,13 +14,14 @@
             <div class="col" class="center">
                     
                 <h8>Create a new account</h8>
-                
+                <div class = "margin-top">
                 <form action="{{url_for('login.google_login')}}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <input type="submit" value="Sign up via Google" class="submit-button-google">
                     </form>
-                <div>
-                <h7> OR </h7>
+                     </div>
+                <div class = "margin-top">
+                <div class = "homepagelink"> OR </div>
                 </div>
 
                 <form action="{{url_for('users.create')}}" method="POST" id="create_new_account">
