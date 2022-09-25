@@ -62,6 +62,12 @@
                     <div class="padding-left-align">
                         <input class="submit-button" type="submit" value="Start my journey">
                     </div>
+                    
+                    <form action="{{url_for('login.google_login')}}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="submit" value="Sign up via Google" class="submit-button-google">
+                    </form>
+                    
                 </form>
             </div>
         </div>
