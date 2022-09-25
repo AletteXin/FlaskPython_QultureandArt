@@ -17,12 +17,17 @@ def return_db():
     if os.getenv('MIGRATION', '0') == '1':
         from playhouse.postgres_ext import PostgresqlExtDatabase
     
-        return PostgresqlExtDatabase(
+        return PostgresqlExtDatabase(           
             db_config['database'],
-            user=db_config.get('user', None),
-            password=db_config.get('password', None),
-            host=db_config.get('host', 'localhost'),
-            port=db_config.get('port', '5432'))
+            database = os.environ('RDS_READS_DB_NAME'),
+            user = os.environ('RDS_USER'),
+            password = os.environ('RDS_DB_PASS'),
+            host = os.environ('RDS_HOST'),
+            port = os.environ('RDS_DB_PORT'))
+#             user=db_config.get('user', None),
+#             password=db_config.get('password', None),
+#             host=db_config.get('host', 'localhost'),
+#             port=db_config.get('port', '5432'))
 
     else:
         from playhouse.pool import PooledPostgresqlExtDatabase
