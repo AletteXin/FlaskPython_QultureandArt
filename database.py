@@ -31,7 +31,7 @@ def return_db():
             host=db_config.get('host', 'localhost'),
             port=db_config.get('port', '5432'),
             rds.force_ssl = 1,
-            ss1: {
+            ss1 = {
   ss1rootcert: fs.readFileSync("rds-combined-ca-bundle.pem").toString(), 
   sslmode: "verify-full"
 }
@@ -56,7 +56,7 @@ def return_db():
             host=db_config.get('host', 'localhost'),
             port=db_config.get('port', '5432'),
             rds.force_ssl = 1,
-            ss1: {
+            ss1 = {
   ss1rootcert: fs.readFileSync("rds-combined-ca-bundle.pem").toString(), 
   sslmode: "verify-full"
 }
