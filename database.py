@@ -19,13 +19,7 @@ def return_db():
     
         return PostgresqlExtDatabase(   
 #             os.environ['DATABASE_URL'],
-            'qulturenart',
-#             database = os.environ('RDS_READS_DB_NAME'),
-#             'qulturenart',
-#             user = 'qultureandart26',
-#             password = 'thisisthepassword',
-#             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-#             port = '5433'       
+            'qulturenart',    
             user = os.getenv('RDS_USER'),
             password = os.getenv('RDS_DB_PASS'),
             host = os.getenv('RDS_HOST'),
@@ -45,10 +39,6 @@ def return_db():
 #             os.getenv['RDS_READS_DB_NAME'],
 #             database = os.getenv('RDS_READS_DB_NAME'),
             'qulturenart',
-#             user = 'qultureandart26',
-#             password = 'thisisthepassword',
-#             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-#             port = '5433'
             user = os.getenv('RDS_USER'),
             password = os.getenv('RDS_DB_PASS'),
             host = os.getenv('RDS_HOST'),
