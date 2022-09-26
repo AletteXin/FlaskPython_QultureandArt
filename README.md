@@ -1,6 +1,6 @@
 # Overview 
 
-Qulture & Art is a user-generated platform designed and coded in Flask. Includes implementation of Google OAuth, a payment gateway, and a backend server hosted on AWS. Live demo: https://infinite-cliffs-09410.herokuapp.com/
+Qulture & Art is a user-generated platform designed and coded in Flask. Includes implementation of Google OAuth, a payment gateway, and a backend server hosted on AWS. Live demo: https://web-production-0082.up.railway.app/about?csrf_token=IjkwMDBhNmUwZmMyN2IyMjNmYTEwNjNhMDNmODkwY2VhNTdlZGI5MjYi.YzEX9Q.3rVN48B1nNP7RizxhLZj_6_g0hU
 
 # Flask Template
 
