@@ -24,7 +24,7 @@ def return_db():
             user = 'qultureandart26',
             password = 'thisisthepassword',
             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-            port = '5432'       
+            port = '5433'       
 #             user = os.environ('RDS_USER'),
 #             password = os.getenv('RDS_DB_PASS'),
 #             host = os.environ('RDS_HOST'),
@@ -46,7 +46,7 @@ def return_db():
             user = 'qultureandart26',
             password = 'thisisthepassword',
             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-            port = '5432'
+            port = '5433'
 #             user = os.environ('RDS_USER'),
 #             password = os.environ('RDS_DB_PASS'),
 #             host = os.environ('RDS_HOST'),
