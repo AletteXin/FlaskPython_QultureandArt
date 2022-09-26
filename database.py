@@ -29,11 +29,7 @@ def return_db():
             user=db_config.get('user', None),
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
-            port=db_config.get('port', '5432'),
-            rds.force_ssl = 1,
-            ss1 = {
-  ss1rootcert: fs.readFileSync("rds-combined-ca-bundle.pem").toString(), 
-  sslmode: "verify-full"
+            port=db_config.get('port', '5432')
 }
         )
 
@@ -54,11 +50,7 @@ def return_db():
             user=db_config.get('user', None),
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
-            port=db_config.get('port', '5432'),
-            rds.force_ssl = 1,
-            ss1 = {
-  ss1rootcert: fs.readFileSync("rds-combined-ca-bundle.pem").toString(), 
-  sslmode: "verify-full"
+            port=db_config.get('port', '5432')
 }
         )
     
