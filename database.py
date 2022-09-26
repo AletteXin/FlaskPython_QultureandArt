@@ -19,12 +19,12 @@ def return_db():
     
         return PostgresqlExtDatabase(   
 #             os.environ['DATABASE_URL'],
-            os.getenv['RDS_READS_DB_NAME'],
+            os.environ['RDS_READS_DB_NAME'],
 #             database = os.environ('RDS_READS_DB_NAME'),
-            user = os.getenv('RDS_USER'),
-            password = os.getenv('RDS_DB_PASS'),
-            host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'),
+            user = os.environ('RDS_USER'),
+            password = os.environ('RDS_DB_PASS'),
+            host = os.environ('RDS_HOST'),
+            port = os.environ('RDS_DB_PORT'),
 #             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
@@ -37,14 +37,14 @@ def return_db():
 
         return PooledPostgresqlExtDatabase(
 # #             os.environ['DATABASE_URL'],
-            os.getenv['RDS_READS_DB_NAME'],
+            os.environ['RDS_READS_DB_NAME'],
 #             database = os.getenv('RDS_READS_DB_NAME'),
-            user = os.getenv('RDS_USER'),
-            password = os.getenv('RDS_DB_PASS'),
-            host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'),
-            max_connections=os.getenv('DB_POOL', 5),
-            stale_timeout=os.getenv('DB_TIMEOUT', 300),  # 5 minutes.
+            user = os.environ('RDS_USER'),
+            password = os.environ('RDS_DB_PASS'),
+            host = os.environ('RDS_HOST'),
+            port = os.environ('RDS_DB_PORT'),
+            max_connections=os.environ('DB_POOL', 5),
+            stale_timeout=os.environ('DB_TIMEOUT', 300),  # 5 minutes.
 #             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
