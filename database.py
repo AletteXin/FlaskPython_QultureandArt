@@ -18,12 +18,13 @@ def return_db():
         from playhouse.postgres_ext import PostgresqlExtDatabase
     
         return PostgresqlExtDatabase(           
-            db_config['database'],
-            database = os.environ('RDS_READS_DB_NAME'),
+            os.environ['RDS_READS_DB_NAME'],
+#             database = os.environ('RDS_READS_DB_NAME'),
             user = os.environ('RDS_USER'),
             password = os.environ('RDS_DB_PASS'),
             host = os.environ('RDS_HOST'),
             port = os.environ('RDS_DB_PORT'))
+#             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
 #             host=db_config.get('host', 'localhost'),
@@ -33,10 +34,11 @@ def return_db():
         from playhouse.pool import PooledPostgresqlExtDatabase
 
         return PooledPostgresqlExtDatabase(
-            db_config['database'],
+            os.environ['RDS_READS_DB_NAME'],
+#             db_config['database'],
             max_connections=os.getenv('DB_POOL', 5),
             stale_timeout=os.getenv('DB_TIMEOUT', 300),  # 5 minutes.
-            database = os.environ('RDS_READS_DB_NAME'),
+#             database = os.environ('RDS_READS_DB_NAME'),
             user = os.environ('RDS_USER'),
             password = os.environ('RDS_DB_PASS'),
             host = os.environ('RDS_HOST'),
