@@ -19,17 +19,17 @@ def return_db():
     
         return PostgresqlExtDatabase(   
 #             os.environ['DATABASE_URL'],
-#             os.environ['RDS_READS_DB_NAME'],
+            os.environ['RDS_READS_DB_NAME'],
 #             database = os.environ('RDS_READS_DB_NAME'),
-            'qulturenart',
-            user = 'qultureandart26',
-            password = 'thisisthepassword',
-            host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-            port = '5433'       
-#             user = os.environ('RDS_USER'),
-#             password = os.getenv('RDS_DB_PASS'),
-#             host = os.environ('RDS_HOST'),
-#             port = os.environ('RDS_DB_PORT'),
+#             'qulturenart',
+#             user = 'qultureandart26',
+#             password = 'thisisthepassword',
+#             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
+#             port = '5433'       
+            user = os.environ('RDS_USER'),
+            password = os.getenv('RDS_DB_PASS'),
+            host = os.environ('RDS_HOST'),
+            port = os.environ('RDS_DB_PORT'),
 #             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
@@ -42,19 +42,19 @@ def return_db():
 
         return PooledPostgresqlExtDatabase(
 # #             os.environ['DATABASE_URL'],
-#             os.environ['RDS_READS_DB_NAME'],
+            os.environ['RDS_READS_DB_NAME'],
 #             database = os.getenv('RDS_READS_DB_NAME'),
-            'qulturenart',
-            user = 'qultureandart26',
-            password = 'thisisthepassword',
-            host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
-            port = '5433'
-#             user = os.environ('RDS_USER'),
-#             password = os.environ('RDS_DB_PASS'),
-#             host = os.environ('RDS_HOST'),
-#             port = os.environ('RDS_DB_PORT'),
-#             max_connections=os.environ('DB_POOL', 5),
-#             stale_timeout=os.environ('DB_TIMEOUT', 300),  # 5 minutes.
+#             'qulturenart',
+#             user = 'qultureandart26',
+#             password = 'thisisthepassword',
+#             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
+#             port = '5433'
+            user = os.environ('RDS_USER'),
+            password = os.environ('RDS_DB_PASS'),
+            host = os.environ('RDS_HOST'),
+            port = os.environ('RDS_DB_PORT'),
+            max_connections=os.environ('DB_POOL', 5),
+            stale_timeout=os.environ('DB_TIMEOUT', 300),  # 5 minutes.
 #             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
