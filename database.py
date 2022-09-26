@@ -30,7 +30,6 @@ def return_db():
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
             port=db_config.get('port', '5432')
-}
         )
 
     else:
@@ -51,7 +50,6 @@ def return_db():
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
             port=db_config.get('port', '5432')
-}
         )
     
 
