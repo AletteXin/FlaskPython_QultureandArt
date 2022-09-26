@@ -18,37 +18,37 @@ def return_db():
         from playhouse.postgres_ext import PostgresqlExtDatabase
     
         return PostgresqlExtDatabase(   
-#             os.environ['DATABASE_URL'],
-            os.getenv['RDS_READS_DB_NAME'],
-#             database = os.environ('RDS_READS_DB_NAME'),
-            username = os.getenv('RDS_USER'),
-            password = os.getenv('RDS_DB_PASS'),
-            host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'))
-#             db_config['database'],
-#             user=db_config.get('user', None),
-#             password=db_config.get('password', None),
-#             host=db_config.get('host', 'localhost'),
-#             port=db_config.get('port', '5432'))
+# #             os.environ['DATABASE_URL'],
+#             os.getenv['RDS_READS_DB_NAME'],
+# #             database = os.environ('RDS_READS_DB_NAME'),
+#             username = os.getenv('RDS_USER'),
+#             password = os.getenv('RDS_DB_PASS'),
+#             host = os.getenv('RDS_HOST'),
+#             port = os.getenv('RDS_DB_PORT'))
+            db_config['database'],
+            user=db_config.get('user', None),
+            password=db_config.get('password', None),
+            host=db_config.get('host', 'localhost'),
+            port=db_config.get('port', '5432'))
 
     else:
         from playhouse.pool import PooledPostgresqlExtDatabase
 
         return PooledPostgresqlExtDatabase(
-#             os.environ['DATABASE_URL'],
-            os.getenv['RDS_READS_DB_NAME'],
-#             db_config['database'],
+# #             os.environ['DATABASE_URL'],
+#             os.getenv['RDS_READS_DB_NAME'],
+            db_config['database'],
             max_connections=os.getenv('DB_POOL', 5),
             stale_timeout=os.getenv('DB_TIMEOUT', 300),  # 5 minutes.
-#             database = os.getenv('RDS_READS_DB_NAME'),
-            username = os.getenv('RDS_USER'),
-            password = os.getenv('RDS_DB_PASS'),
-            host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'))
-#             user=db_config.get('user', None),
-#             password=db_config.get('password', None),
-#             host=db_config.get('host', 'localhost'),
-#             port=db_config.get('port', '5432'))
+# #             database = os.getenv('RDS_READS_DB_NAME'),
+#             username = os.getenv('RDS_USER'),
+#             password = os.getenv('RDS_DB_PASS'),
+#             host = os.getenv('RDS_HOST'),
+#             port = os.getenv('RDS_DB_PORT'))
+            user=db_config.get('user', None),
+            password=db_config.get('password', None),
+            host=db_config.get('host', 'localhost'),
+            port=db_config.get('port', '5432'))
     
 
 db = return_db()
