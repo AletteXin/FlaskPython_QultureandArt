@@ -29,7 +29,9 @@ def return_db():
             user=db_config.get('user', None),
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
-            port=db_config.get('port', '5432'))
+            port=db_config.get('port', '5432'),
+            rds.force_ssl = 1
+        )
 
     else:
         from playhouse.pool import PooledPostgresqlExtDatabase
@@ -48,7 +50,9 @@ def return_db():
             user=db_config.get('user', None),
             password=db_config.get('password', None),
             host=db_config.get('host', 'localhost'),
-            port=db_config.get('port', '5432'))
+            port=db_config.get('port', '5432'),
+            rds.force_ssl = 1
+        )
     
 
 db = return_db()
