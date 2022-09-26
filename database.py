@@ -19,8 +19,9 @@ def return_db():
     
         return PostgresqlExtDatabase(   
 #             os.environ['DATABASE_URL'],
-            os.environ['RDS_READS_DB_NAME'],
+#             os.environ['RDS_READS_DB_NAME'],
 #             database = os.environ('RDS_READS_DB_NAME'),
+            'qulturenart',
             user = 'qultureandart26',
             password = 'thisisthepassword',
             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
@@ -41,8 +42,9 @@ def return_db():
 
         return PooledPostgresqlExtDatabase(
 # #             os.environ['DATABASE_URL'],
-            os.environ['RDS_READS_DB_NAME'],
+#             os.environ['RDS_READS_DB_NAME'],
 #             database = os.getenv('RDS_READS_DB_NAME'),
+            'qulturenart',
             user = 'qultureandart26',
             password = 'thisisthepassword',
             host = 'qulturenart.cbmasmhporwp.us-east-1.rds.amazonaws.com',
