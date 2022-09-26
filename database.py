@@ -17,8 +17,9 @@ def return_db():
     if os.getenv('MIGRATION', '0') == '1':
         from playhouse.postgres_ext import PostgresqlExtDatabase
     
-        return PostgresqlExtDatabase(           
-            os.environ['RDS_READS_DB_NAME'],
+        return PostgresqlExtDatabase(   
+            os.environ['DATABASE_URL'],
+#             os.environ['RDS_READS_DB_NAME'],
 #             database = os.environ('RDS_READS_DB_NAME'),
             user = os.environ('RDS_USER'),
             password = os.environ('RDS_DB_PASS'),
@@ -34,7 +35,8 @@ def return_db():
         from playhouse.pool import PooledPostgresqlExtDatabase
 
         return PooledPostgresqlExtDatabase(
-            os.environ['RDS_READS_DB_NAME'],
+            os.environ['DATABASE_URL'],
+#             os.environ['RDS_READS_DB_NAME'],
 #             db_config['database'],
             max_connections=os.getenv('DB_POOL', 5),
             stale_timeout=os.getenv('DB_TIMEOUT', 300),  # 5 minutes.
