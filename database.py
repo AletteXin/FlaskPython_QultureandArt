@@ -24,7 +24,7 @@ def return_db():
             user = os.getenv('RDS_USER'),
             password = os.getenv('RDS_DB_PASS'),
             host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'))
+            port = os.getenv('RDS_DB_PORT'),
 #             db_config['database'],
 #             user=db_config.get('user', None),
 #             password=db_config.get('password', None),
@@ -42,7 +42,7 @@ def return_db():
             user = os.getenv('RDS_USER'),
             password = os.getenv('RDS_DB_PASS'),
             host = os.getenv('RDS_HOST'),
-            port = os.getenv('RDS_DB_PORT'))
+            port = os.getenv('RDS_DB_PORT'),
             max_connections=os.getenv('DB_POOL', 5),
             stale_timeout=os.getenv('DB_TIMEOUT', 300),  # 5 minutes.
 #             db_config['database'],
