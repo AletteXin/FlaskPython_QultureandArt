@@ -35,9 +35,9 @@ def create():
     if password != reenter_password:
         flash("Passwords do not match. Please reenter details.")
 
-    new_user = User(name = name, username=username, password = password, email = email)
+#     new_user = User(name = name, username=username, password = password, email = email)
 
-    if new_user.save():
+    if User(name = name, username=username, password = password, email = email).save():
         user = User.get_or_none(User.name == username)
         session['user_id'] = user.id
         login_user(user)
