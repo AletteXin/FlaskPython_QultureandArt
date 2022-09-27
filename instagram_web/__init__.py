@@ -58,10 +58,11 @@ def home():
         
         
     images = Image.select().order_by(Image.created_at.desc())
+    print(images)
     users = User.select()
 #     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
-
+    print(users_with_images)
 
     return render_template('home.html', user = user, users_with_images = users_with_images, idols = idols, user_liked = user_liked)
 
