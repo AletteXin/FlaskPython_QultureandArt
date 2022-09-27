@@ -37,7 +37,7 @@ def create():
 
 #     new_user = User(name = name, username=username, password = password, email = email)
 
-    if User(name = name, username=username, password = password, email = email).save():
+    if User(name = name, username=username, password = password, email = email).validate():
         user = User.get_or_none(User.name == username)
         session['user_id'] = user.id
         login_user(user)
