@@ -68,12 +68,13 @@ Database:
 
 **Visit the user feed of other users**
 - Users can visit the user feed of other public users.
+
 - If the user's account is set to public, all users can see their posts.  
+- There is a button to follow or to stop following the user's account.
 <img src="https://user-images.githubusercontent.com/85789376/192556232-5a853124-18b1-45b3-9783-b980d132a9e9.png" height="300"> 
 <img src="https://user-images.githubusercontent.com/85789376/192556238-c4d10089-8f79-4423-a6a2-3b2f7ddf222d.png" height="300"> 
 
 - If the user's account is set to private, only existing approved followers can see their posts. 
-
 <img src="https://user-images.githubusercontent.com/85789376/192560982-b25232a0-4b08-4358-bd89-8d0a3e525425.png" height="300"> 
 <img src="https://user-images.githubusercontent.com/85789376/192560988-206bb704-d280-4a90-bc0c-72a990039314.png" height="300"> 
 <img src="https://user-images.githubusercontent.com/85789376/192560998-5cbf6a61-3151-444f-85bf-a691205acc90.png" height="300"> 
