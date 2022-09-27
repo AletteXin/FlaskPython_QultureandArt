@@ -15,8 +15,7 @@ class BaseModel(pw.Model):
 
         if len(self.errors) == 0:
             self.updated_at = datetime.datetime.now()
-            return 1
-#             return super(BaseModel, self).save(*args, **kwargs)
+            return super(BaseModel, self).save(*args, **kwargs)
         else:
             for list in self.errors:
                 flash(list)
