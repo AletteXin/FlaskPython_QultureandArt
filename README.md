@@ -44,7 +44,6 @@ Database:
 
 
 **Main post feed**
-
 - Users can view all posts of other public users or private, authorised users that they follow.
 - Each post consists of the profile picture of the person posting, a title, a caption and a picture. 
 - Each post also has a like button and a donation button. 
@@ -65,6 +64,19 @@ Database:
 - Users can upload a picture, fill in a title, and add a description. 
 
 <img src="https://user-images.githubusercontent.com/85789376/192550174-4d3254f7-67c2-450e-be80-7feba14ddd87.png" height="300"> 
+
+
+**Visit the user feed of other users**
+- Users can visit the user feed of other public users.
+- If the user's account is set to public, all users can see their posts.  
+<img src="https://user-images.githubusercontent.com/85789376/192556232-5a853124-18b1-45b3-9783-b980d132a9e9.png" height="300"> 
+<img src="https://user-images.githubusercontent.com/85789376/192556238-c4d10089-8f79-4423-a6a2-3b2f7ddf222d.png" height="300"> 
+
+- If the user's account is set to private, only existing approved followers can see their posts. 
+
+<img src="https://user-images.githubusercontent.com/85789376/192560982-b25232a0-4b08-4358-bd89-8d0a3e525425.png" height="300"> 
+<img src="https://user-images.githubusercontent.com/85789376/192560988-206bb704-d280-4a90-bc0c-72a990039314.png" height="300"> 
+<img src="https://user-images.githubusercontent.com/85789376/192560998-5cbf6a61-3151-444f-85bf-a691205acc90.png" height="300"> 
 
 **Approve/reject follower requests page**
 - Users can check on new follower requests (applicable only to users who set their account to private)
@@ -87,8 +99,3 @@ Database:
 **Donation page**
 - Users can make donations to other users using a Braintree payment gateway. 
 <img src="https://user-images.githubusercontent.com/85789376/192550159-79b8d7f9-9e28-4a16-a732-14519db1d4c4.png" height="300"> 
-
-![Screenshot 2022-09-27 at 10 31 16 AM](https://user-images.githubusercontent.com/85789376/192556232-5a853124-18b1-45b3-9783-b980d132a9e9.png)
-![Screenshot 2022-09-27 at 10 30 34 AM](https://user-images.githubusercontent.com/85789376/192556238-c4d10089-8f79-4423-a6a2-3b2f7ddf222d.png)
-
-
