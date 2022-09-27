@@ -57,7 +57,7 @@ def home():
         user_liked = []
 
     users = User.select()
-    images = Image.select().order_by(Image.date_posted)
+    images = Image.select().order_by(Image.date_posted.desc())
 #     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
 
@@ -66,18 +66,6 @@ def home():
 
 @app.route("/about")
 def about():
-#     if session.get('user_id'):
-#         user = User.get_or_none(User.id == session["user_id"])
-#         if user:
-#             idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
-#             user_liked = Image.select().join(Likes, on = Likes.liker_id == user.id).where(Likes.image_id == Image.id)
-
-#     else:
-#         user = None 
-#         idols = []
-#         user_liked = []
-
-
     return render_template('about.html')
 
 
