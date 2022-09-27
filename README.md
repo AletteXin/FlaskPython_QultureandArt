@@ -26,12 +26,32 @@ Hosted on Amazon Web Services RDS
 
 # Key features 
 
+**Sign-up for new users**
+
+- New users can create an account using Google OAuth or by filling up the form. 
+- Checks are included to ensure passwords contain an uppercase, a lowercase and a special character.  
+
 <img src="https://user-images.githubusercontent.com/85789376/192550183-97d426f6-a44d-481e-a224-4ea77d832486.png" height="500"> 
+
+**Login for existing users**
+
+- Existing users can input their information to login or login via Google OAuth. 
+- An error appears if the login details are not matching with details in the database. 
 
 <img src="https://user-images.githubusercontent.com/85789376/192550188-5147e4ff-0889-425d-b0e6-8765c4f2e7f7.png" height="500"> 
 
+
+**Main post feed**
+
+- Users can view all posts of other public users or private, authorised users that they follow.
+- Each post consists of the profile picture of the person posting, a caption and a picture. 
+- Each post also has a like button and a donation button. 
+- Posts are arranged with the most recent post at the top 
+- There is a "Back to top" button on screen to enable quick access to the top of the page 
+
 <img src="https://user-images.githubusercontent.com/85789376/192550190-75b8defd-79ad-49ab-a7b3-baf6dda4e5f8.png" height="500"> 
 
+**Main post feed**
 
 <img src="https://user-images.githubusercontent.com/85789376/192550181-3f829943-872e-4361-b906-d3e886703e55.png" height="500"> 
 
