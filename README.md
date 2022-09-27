@@ -1,7 +1,7 @@
 # QULTURE AND ART  
 # Overview 
 
-Qulture and Art is a platform for people to share stories about their culture in efforts to unite us regardless of origins. 
+Qulture and Art is a platform for people to share stories about their culture. Content is user-generated. Key features are listed below.  
 
 # Live demo 
 Access a deployed version of the platform here: https://web-production-0082.up.railway.app/
