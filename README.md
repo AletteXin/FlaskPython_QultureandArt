@@ -11,8 +11,8 @@ Options to login to access full range of features:
 First option: Click on 'Login" on the navigation bar and login via:
 1. Your personal Google account using Google OAuth, or 
 2. The following login details: 
-   username: maxfullerton
-   password: Max789$$$
+- username: maxfullerton
+- password: Max789$$$
   
 Second option: Click on "Signup" on the navigation bar and create a new account
  
