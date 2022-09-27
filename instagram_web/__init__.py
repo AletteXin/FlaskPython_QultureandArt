@@ -55,9 +55,10 @@ def home():
         user = None 
         idols = []
         user_liked = []
-
-    users = User.select()
+        
+        
     images = Image.select().order_by(Image.date_posted.desc())
+    users = User.select()
 #     images = Image.select().order_by(Image.date_posted.desc())
     users_with_images = prefetch(images, users)
 
