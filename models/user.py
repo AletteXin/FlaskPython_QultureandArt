@@ -26,6 +26,7 @@ class User(UserMixin, BaseModel):
 
         if not self.id:
             existing_username = User.get_or_none(User.username == self.username)
+            print(existing_username)
             if existing_username:
                     self.errors.append("Sadly, this username has been taken. Please choose another.")
             
