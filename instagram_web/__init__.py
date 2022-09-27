@@ -66,16 +66,16 @@ def home():
 
 @app.route("/about")
 def about():
-#     if session.get('user_id'):
-#         user = User.get_or_none(User.id == session["user_id"])
-#         if user:
-#             idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
-#             user_liked = Image.select().join(Likes, on = Likes.liker_id == user.id).where(Likes.image_id == Image.id)
+    if session.get('user_id'):
+        user = User.get_or_none(User.id == session["user_id"])
+        if user:
+            idols = User.select().join(Follow, on = Follow.idol_id == User.id).where(Follow.follower_id == user.id, Follow.approved == "1")
+            user_liked = Image.select().join(Likes, on = Likes.liker_id == user.id).where(Likes.image_id == Image.id)
 
-#     else:
-#         user = None 
-#         idols = []
-#         user_liked = []
+    else:
+        user = None 
+        idols = []
+        user_liked = []
 
 
     return render_template('about.html', user = user, users_with_images = users_with_images, idols = idols, user_liked = user_liked)
