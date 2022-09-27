@@ -40,7 +40,7 @@ Database:
 - Existing users can input their information to login or login via Google OAuth. 
 - An error appears if the login details are not matching with details in the database. 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550188-5147e4ff-0889-425d-b0e6-8765c4f2e7f7.png" height="200"> 
+<img src="https://user-images.githubusercontent.com/85789376/192550188-5147e4ff-0889-425d-b0e6-8765c4f2e7f7.png" height="300"> 
 
 
 **Main post feed**
@@ -51,29 +51,36 @@ Database:
 - Posts are arranged with the most recent post at the top 
 - There is a "Back to top" button on screen to enable quick access to the top of the page 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550190-75b8defd-79ad-49ab-a7b3-baf6dda4e5f8.png" height="500"> 
+<img src="https://user-images.githubusercontent.com/85789376/192550190-75b8defd-79ad-49ab-a7b3-baf6dda4e5f8.png" height="300"> 
 
 **User feed**
 
 - Displays all posts posted by user 
-- Shows a list of all the user's followers 
-- Contains buttons to allow user to update profile picture, edit personal details and post a new story. 
+- Shows a list of all the accounts that the user is following
+- Contains buttons to allow user to approve/reject folower requests, update profile picture, edit personal details and post a new story. 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550181-3f829943-872e-4361-b906-d3e886703e55.png" height="500"> 
+<img src="https://user-images.githubusercontent.com/85789376/192550181-3f829943-872e-4361-b906-d3e886703e55.png" height="300"> 
 
 **New post upload page**
-
 - Users can upload a picture, fill in a title, and add a description. 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550174-4d3254f7-67c2-450e-be80-7feba14ddd87.png" height="500"> 
+<img src="https://user-images.githubusercontent.com/85789376/192550174-4d3254f7-67c2-450e-be80-7feba14ddd87.png" height="300"> 
 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550169-61566fa8-cded-42df-a48c-560ef8e368c0.png" height="500"> 
+**Approve/reject follower requests page**
+- Users can check on new follower requests (applicable only to users who set their account to private)
+- Users can check their list of followers and accounts that they are following 
 
+<img src="https://user-images.githubusercontent.com/85789376/192550169-61566fa8-cded-42df-a48c-560ef8e368c0.png" height="300"> 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550163-5a1aa21b-d91a-404f-b1c0-bb1b9b29895f.png" height="500"> 
+**Update profile picture page**
+- Users can upload a new profile picture 
+- Users will receive a message when the profile picture has been successfully uploaded 
 
+<img src="https://user-images.githubusercontent.com/85789376/192550163-5a1aa21b-d91a-404f-b1c0-bb1b9b29895f.png" height="300"> 
 
-<img src="https://user-images.githubusercontent.com/85789376/192550162-4e5aa706-81ca-488d-b661-7a8070984d7d.png" height="500">
+**Update profile picture page**
+- Users can upload a new profile picture 
+<img src="https://user-images.githubusercontent.com/85789376/192550162-4e5aa706-81ca-488d-b661-7a8070984d7d.png" height="300">
 
-<img src="https://user-images.githubusercontent.com/85789376/192550159-79b8d7f9-9e28-4a16-a732-14519db1d4c4.png" height="500"> 
+<img src="https://user-images.githubusercontent.com/85789376/192550159-79b8d7f9-9e28-4a16-a732-14519db1d4c4.png" height="300"> 
