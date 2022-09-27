@@ -76,7 +76,6 @@ Database:
 
 - If the user's account is set to private, only existing approved followers can see their posts. 
 <img src="https://user-images.githubusercontent.com/85789376/192560988-206bb704-d280-4a90-bc0c-72a990039314.png" height="300"> 
-<img src="https://user-images.githubusercontent.com/85789376/192560998-5cbf6a61-3151-444f-85bf-a691205acc90.png" height="300"> 
 
 **Approve/reject follower requests page**
 - Users can check on new follower requests (applicable only to users who set their account to private)
