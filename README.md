@@ -24,7 +24,8 @@ Full-stack:
 Database: 
 - Postgres 
 - Peewee 
-- Hosted on Amazon Web Services RDS 
+- User generated information and content hosted on Amazon Web Services RDS 
+- Non-user generated information hosted on Amazon S3
 
 # Key features 
 
