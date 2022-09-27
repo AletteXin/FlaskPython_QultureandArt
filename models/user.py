@@ -25,10 +25,9 @@ class User(UserMixin, BaseModel):
     def validate(self):
 
         if not self.id:
-            existing_username = User.get_or_none(User.username == self.username)
+#             existing_username = User.get_or_none(User.username == self.username)
 #             if existing_username:
-            if len(existing_username) > 1:
-                    self.errors.append("Sadly, this username has been taken. Please choose another.")
+#                     self.errors.append("Sadly, this username has been taken. Please choose another.")
             
 
             email_existing = User.get_or_none(User.email == self.email)
