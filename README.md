@@ -75,15 +75,13 @@ Database:
 <img src="https://user-images.githubusercontent.com/85789376/192556238-c4d10089-8f79-4423-a6a2-3b2f7ddf222d.png" height="300"> 
 
 - If the user's account is set to private, only existing approved followers can see their posts. 
-<img src="https://user-images.githubusercontent.com/85789376/192560982-b25232a0-4b08-4358-bd89-8d0a3e525425.png" height="300"> 
 <img src="https://user-images.githubusercontent.com/85789376/192560988-206bb704-d280-4a90-bc0c-72a990039314.png" height="300"> 
 <img src="https://user-images.githubusercontent.com/85789376/192560998-5cbf6a61-3151-444f-85bf-a691205acc90.png" height="300"> 
 
 **Approve/reject follower requests page**
 - Users can check on new follower requests (applicable only to users who set their account to private)
 - Users can check their list of followers and accounts that they are following 
-
-<img src="https://user-images.githubusercontent.com/85789376/192550169-61566fa8-cded-42df-a48c-560ef8e368c0.png" height="300"> 
+<img src="https://user-images.githubusercontent.com/85789376/192560982-b25232a0-4b08-4358-bd89-8d0a3e525425.png" height="300"> 
 
 **Update profile picture page**
 - Users can upload a new profile picture.
