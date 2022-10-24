@@ -98,3 +98,4 @@ Database:
 **Donation page**
 - Users can make donations to other users using a Braintree payment gateway. 
 <img src="https://user-images.githubusercontent.com/85789376/192550159-79b8d7f9-9e28-4a16-a732-14519db1d4c4.png" height="300"> 
+
